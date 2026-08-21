@@ -29,7 +29,10 @@ describe("OracleCard", () => {
     expect(container.querySelector(".sgs-card__top")).toBeTruthy();
     expect(container.querySelector(".sgs-card__corner")).toBeTruthy();
     expect(container.querySelector(".sgs-card__art")).toBeTruthy();
+    expect(container.querySelector(".sgs-card__art-corner--left")).toBeTruthy();
+    expect(container.querySelector(".sgs-card__art-corner--right")).toBeTruthy();
     expect(container.querySelector(".sgs-card__body")).toBeTruthy();
+    expect(container.querySelector(".sgs-card__seal")?.textContent).toContain("塔罗杀");
     expect(container.querySelector('[data-orientation="upright"]')).toBeTruthy();
   });
 

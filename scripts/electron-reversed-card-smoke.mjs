@@ -7,6 +7,8 @@ import { loadAssetPack } from "../desktop/assetManifest.mjs";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const devUrl = process.env.TALUOSHA_SMOKE_URL || "http://127.0.0.1:3000";
+const viewportWidth = Number(process.env.TALUOSHA_SMOKE_WIDTH || 1100);
+const screenshotPath = process.env.TALUOSHA_SMOKE_SCREENSHOT;
 
 const imageBytes = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScL9WQAAAABJRU5ErkJggg==", "base64");
 const imageCardIds = Array.from({ length: 108 }, (_, index) => `game-${String(index + 1).padStart(3, "0")}`);
@@ -40,6 +42,8 @@ async function main() {
 
   const window = new BrowserWindow({
     show: false,
+    width: viewportWidth,
+    height: 900,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -88,7 +92,23 @@ async function main() {
       const reversedImageCard = cards.find((card) => card.orientation === "reversed" && card.usesLocalImage);
       if (uprightImageCard) observed.upright = uprightImageCard;
       if (reversedImageCard) observed.reversed = reversedImageCard;
-      if (observed.upright && observed.reversed) return { attempt, cards, observed, trace: [...document.querySelectorAll(".orientation-audit")].find((node) => node.textContent.includes("[TRACE]"))?.textContent };
+      if (observed.upright && observed.reversed) {
+        const grid = document.querySelector(".card-grid");
+        const boxes = [...grid.children].map((node) => node.getBoundingClientRect());
+        return {
+          attempt,
+          cards,
+          observed,
+          trace: [...document.querySelectorAll(".orientation-audit")].find((node) => node.textContent.includes("[TRACE]"))?.textContent,
+          layout: {
+            viewport: window.innerWidth,
+            columns: getComputedStyle(grid).gridTemplateColumns.split(" ").length,
+            maxCardRight: Math.max(...boxes.map((box) => box.right)),
+            viewportRight: window.innerWidth,
+            scrollWidth: document.documentElement.scrollWidth,
+          },
+        };
+      }
       await waitFor(() => !document.querySelector("button[type=submit]").disabled);
     }
     throw new Error("Twenty desktop draws did not return both upright and reversed local-image cards");
@@ -97,9 +117,17 @@ async function main() {
   if (!verification.observed.upright || !verification.observed.reversed || verification.observed.upright.hasReversedClass || verification.observed.upright.transform !== "none" || !verification.observed.reversed.hasReversedClass || verification.observed.reversed.transform === "none") {
     throw new Error(`Electron reversed-card verification failed: ${JSON.stringify(verification)}`);
   }
+  if (viewportWidth <= 520 && (verification.layout.columns !== 1 || verification.layout.maxCardRight > verification.layout.viewportRight + 1 || verification.layout.scrollWidth > verification.layout.viewportRight + 1)) {
+    throw new Error(`Electron narrow-card layout verification failed: ${JSON.stringify(verification.layout)}`);
+  }
 
   console.log(`Electron reversed-card smoke test passed on draw ${verification.attempt}`);
   console.log(verification.trace);
+  if (screenshotPath) {
+    await window.webContents.executeJavaScript(`window.scrollTo({ top: document.querySelector(".card-grid").getBoundingClientRect().top + window.scrollY - 8 })`);
+    await new Promise((resolve) => setTimeout(resolve, 80));
+    await writeFile(screenshotPath, (await window.capturePage()).toPNG());
+  }
   await window.close();
   protocol.unhandle("taluosha-asset");
   await rm(path.dirname(assetPath), { recursive: true, force: true });
