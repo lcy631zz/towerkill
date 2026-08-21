@@ -30,7 +30,7 @@ async function createWindow() {
   serverProcess.on("error", (error) => dialog.showErrorBox("塔罗杀启动失败", error.message));
   try {
     await waitForServer();
-    const window = new BrowserWindow({ width: 1180, height: 760, minWidth: 860, minHeight: 560, title: "塔罗杀", autoHideMenuBar: true, webPreferences: { contextIsolation: true, nodeIntegration: false } });
+    const window = new BrowserWindow({ width: 720, height: 620, minWidth: 460, minHeight: 420, resizable: true, title: "塔罗杀", autoHideMenuBar: true, webPreferences: { contextIsolation: true, nodeIntegration: false } });
     await window.loadURL(`http://127.0.0.1:${port}`);
   } catch (error) {
     dialog.showErrorBox("塔罗杀启动失败", error instanceof Error ? error.message : "未知错误");

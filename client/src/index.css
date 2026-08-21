@@ -27,7 +27,7 @@ textarea, input { width: 100%; border: 1px solid #999; border-radius: 0; backgro
 button { margin-top: 10px; border: 1px solid #777; border-radius: 0; background: #efefef; padding: 5px 13px; color: #111; font-weight: 700; cursor: pointer; }
 button:disabled { color: #777; cursor: default; }
 .error-line, .notice-line { margin: 10px 0 0; color: #9c0000; white-space: pre-wrap; }
-.table-section table, .plain-panel table { width: 100%; border-collapse: collapse; }
+.plain-panel table { width: 100%; border-collapse: collapse; }
 th { background: #9de09e; font-weight: 700; }
 th, td { border: 1px solid #ddd; padding: 4px 6px; text-align: left; vertical-align: top; }
 .result-section { margin-top: 22px; padding-top: 1px; border-top: 1px solid #aaa; scroll-margin-top: 12px; }

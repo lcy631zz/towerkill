@@ -1,6 +1,5 @@
 import type { Express, Request, Response } from "express";
 import { z } from "zod";
-import { ENV } from "./_core/env";
 import { buildDivinationResult } from "./divinationEngine";
 
 const interpretationRequest = z.object({
@@ -11,7 +10,6 @@ const interpretationRequest = z.object({
   ritualNonce: z.string().min(16).max(64),
   provider: z.discriminatedUnion("mode", [
     z.object({ mode: z.literal("rules") }),
-    z.object({ mode: z.literal("builtin") }),
     z.object({ mode: z.literal("custom"), baseUrl: z.string().url(), model: z.string().trim().min(1).max(160), apiKey: z.string().trim().min(1).max(500) }),
     z.object({ mode: z.literal("local"), baseUrl: z.string().url(), model: z.string().trim().min(1).max(160), apiKey: z.string().trim().max(500).optional() }),
   ]).optional().default({ mode: "rules" }),
@@ -123,14 +121,11 @@ export function registerInterpretationStream(app: Express) {
       }
 
       const provider = parsed.data.provider;
-      const isBuiltin = provider.mode === "builtin";
       if (provider.mode === "custom" && new URL(provider.baseUrl).protocol !== "https:") throw new Error("custom API must use HTTPS");
       if (provider.mode === "local" && !isLocalHost(provider.baseUrl)) throw new Error("local mode must use localhost");
-      const endpoint = isBuiltin
-        ? `${(ENV.forgeApiUrl || "https://forge.manus.im").replace(/\/$/, "")}/v1/chat/completions`
-        : toCompletionUrl(provider.baseUrl);
-      const apiKey = isBuiltin ? ENV.forgeApiKey : provider.apiKey;
-      const model = isBuiltin ? "gpt-5-mini" : provider.model;
+      const endpoint = toCompletionUrl(provider.baseUrl);
+      const apiKey = provider.apiKey;
+      const model = provider.model;
       const upstream = await fetch(endpoint, {
         method: "POST",
         signal: controller.signal,
