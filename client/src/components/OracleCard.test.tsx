@@ -21,8 +21,9 @@ describe("OracleCard", () => {
     render(<OracleCard card={testCard} orientation="upright" index={2} />);
 
     expect(screen.getByText("五谷丰登")).toBeTruthy();
-    expect(screen.getByText("第 02 张 · 游戏")).toBeTruthy();
-    expect(screen.getByText("游戏牌·锦囊 · ♥3")).toBeTruthy();
+    expect(screen.getByText("游戏牌")).toBeTruthy();
+    expect(screen.getByText("#02")).toBeTruthy();
+    expect(screen.getByText("游戏牌·锦囊", { exact: false })).toBeTruthy();
     expect(screen.getByText("资源显现、各取所需、分配")).toBeTruthy();
     expect(screen.getByText("正位 · 正着")).toBeTruthy();
   });

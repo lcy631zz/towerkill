@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
+  "main": "desktop/main.mjs",
   "scripts": {
     "dev": "NODE_ENV=development tsx watch server/_core/index.ts",
     "build": "vite build && esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
@@ -10,7 +11,19 @@
     "check": "tsc --noEmit",
     "format": "prettier --write .",
     "test": "vitest run",
-    "db:push": "drizzle-kit generate && drizzle-kit migrate"
+    "db:push": "drizzle-kit generate && drizzle-kit migrate",
+    "desktop:run": "electron .",
+    "desktop:package": "pnpm build && electron-builder --win nsis portable"
+  },
+  "build": {
+    "appId": "im.manus.taluosha",
+    "productName": "塔罗杀",
+    "asar": false,
+    "directories": { "output": "release" },
+    "files": ["dist/**/*", "desktop/**/*", "package.json"],
+    "win": { "target": ["nsis", "portable"] },
+    "nsis": { "oneClick": true, "perMachine": false },
+    "artifactName": "${productName}-${version}-win-${arch}.${ext}"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.693.0",
@@ -93,6 +106,8 @@
     "add": "^2.0.6",
     "autoprefixer": "^10.4.20",
     "drizzle-kit": "^0.31.4",
+    "electron": "^43.4.1",
+    "electron-builder": "^26.15.3",
     "esbuild": "^0.25.0",
     "jsdom": "^30.0.1",
     "pnpm": "^10.15.1",

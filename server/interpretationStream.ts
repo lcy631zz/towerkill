@@ -9,6 +9,12 @@ const interpretationRequest = z.object({
   numberB: z.number().int().min(1).max(999),
   numberC: z.number().int().min(1).max(999),
   ritualNonce: z.string().min(16).max(64),
+  provider: z.discriminatedUnion("mode", [
+    z.object({ mode: z.literal("rules") }),
+    z.object({ mode: z.literal("builtin") }),
+    z.object({ mode: z.literal("custom"), baseUrl: z.string().url(), model: z.string().trim().min(1).max(160), apiKey: z.string().trim().min(1).max(500) }),
+    z.object({ mode: z.literal("local"), baseUrl: z.string().url(), model: z.string().trim().min(1).max(160), apiKey: z.string().trim().max(500).optional() }),
+  ]).optional().default({ mode: "rules" }),
 });
 
 const disclaimer = "娱乐占卜，切勿迷信，结果不构成任何现实决策依据";
@@ -72,6 +78,18 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   return `### 塔罗 · 三牌叙事\n本次牌面依次落在**${cardNames}**。它们像一段从处境、阻力到可用资源的叙事：先承认眼前的张力，再寻找可以重新调度的空间。正逆位提示的不是吉凶定论，而是同一力量在“顺势发挥”与“需要调整”之间的不同状态。\n\n### 梅花易数 · 卦象脉络\n本卦为**${result.plum.primary.name}**，互卦为**${result.plum.mutual.name}**，变卦为**${result.plum.changed.name}**；第 ${result.plum.movingLine} 爻动。体为${result.plum.body.name}，用为${result.plum.use.name}，呈现“${result.plum.relation.kind}”之象：${result.plum.relation.summary}\n\n### 六壬意象旁注\n这不是传统完整大六壬排盘，而是以本次数字、牌面和问事语境作的娱乐性象征联想：不必急于把所有线索一次看透，先把最能影响局面的一个动作放在可掌控的尺度里。\n\n### 综合结论 · 可尝试的下一步\n将问题拆成一个能在一两天内验证的小步骤：补一条信息、写下两个选项，或与可信的人做一次具体沟通。让行动给你新的证据，而不是把一次抽牌当作结论。\n\n> ${disclaimer}`;
 }
 
+function toCompletionUrl(baseUrl: string) {
+  const parsed = new URL(baseUrl);
+  if (!['http:', 'https:'].includes(parsed.protocol)) throw new Error("invalid provider protocol");
+  const clean = baseUrl.replace(/\/$/, "");
+  return clean.endsWith("/chat/completions") ? clean : `${clean}/chat/completions`;
+}
+
+function isLocalHost(baseUrl: string) {
+  const host = new URL(baseUrl).hostname;
+  return host === "127.0.0.1" || host === "localhost" || host === "::1";
+}
+
 export function registerInterpretationStream(app: Express) {
   app.post("/api/interpretation/stream", async (req: Request, res: Response) => {
     const parsed = interpretationRequest.safeParse(req.body);
@@ -98,13 +116,27 @@ export function registerInterpretationStream(app: Express) {
     });
 
     try {
-      const endpoint = `${(ENV.forgeApiUrl || "https://forge.manus.im").replace(/\/$/, "")}/v1/chat/completions`;
+      if (parsed.data.provider.mode === "rules") {
+        for (const chunk of splitForFallback(buildFallback(result))) formatSse(res, "delta", { text: chunk });
+        formatSse(res, "notice", { text: "规则本机模式：未调用任何大模型；文本由牌面、卦象和预设模板组合生成。" });
+        return;
+      }
+
+      const provider = parsed.data.provider;
+      const isBuiltin = provider.mode === "builtin";
+      if (provider.mode === "custom" && new URL(provider.baseUrl).protocol !== "https:") throw new Error("custom API must use HTTPS");
+      if (provider.mode === "local" && !isLocalHost(provider.baseUrl)) throw new Error("local mode must use localhost");
+      const endpoint = isBuiltin
+        ? `${(ENV.forgeApiUrl || "https://forge.manus.im").replace(/\/$/, "")}/v1/chat/completions`
+        : toCompletionUrl(provider.baseUrl);
+      const apiKey = isBuiltin ? ENV.forgeApiKey : provider.apiKey;
+      const model = isBuiltin ? "gpt-5-mini" : provider.model;
       const upstream = await fetch(endpoint, {
         method: "POST",
         signal: controller.signal,
-        headers: { "content-type": "application/json", authorization: `Bearer ${ENV.forgeApiKey}` },
+        headers: { "content-type": "application/json", ...(apiKey ? { authorization: `Bearer ${apiKey}` } : {}) },
         body: JSON.stringify({
-          model: "gpt-5-mini",
+          model,
           stream: true,
           max_completion_tokens: 1800,
           messages: [
