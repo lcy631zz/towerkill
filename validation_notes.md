@@ -44,4 +44,20 @@
 
 网页预览以问句“复核方向追踪”及数字 `444`、`555`、`666` 完成实测，仪式摘要为 `e78862539037f7b8`。追踪输出为：`#1:S=R/C=R/D=R/CSS=Y`、`#2:S=U/C=U/D=U/CSS=N`、`#3:S=R/C=R/D=R/CSS=Y`。对应第一、三张卡面实际整体倒置，第二张保持正向，说明三条方向数据链路与最终 CSS 类均一致。
 
+网页预览的实际页面截图同时显示第一、三张完整文字卡面倒置、第二张保持正向；这与同页 `[TRACE]` 的 `R/Y` 与 `U/N` 状态逐张相符。网页端视觉证据用于核对可见方向，Electron 全界面测试则另外以计算 `transform` 样式验证桌面端旋转已经由渲染引擎实际应用。
+
 新增的卡面诊断单元测试覆盖逆位 `clientOrientation`、DOM `dataOrientation` 与倒置类命中。最新 `pnpm test` 为 5 个测试文件、15 条断言全部通过；`pnpm check` 无错误。
+
+## Electron 桌面渲染验证
+
+新增全界面 Electron 冒烟测试后，在桌面渲染器中实际加载应用、填入问句与三个数字并提交抽牌。首次抽牌即得到追踪结果：`#1:S=U/C=U/D=U/CSS=N`、`#2:S=R/C=R/D=R/CSS=Y`、`#3:S=R/C=R/D=R/CSS=Y`。
+
+测试同时读取逆位卡片的计算 `transform` 样式，并确认其不为 `none`；因此桌面端的文字回退卡不仅方向数据与 CSS 类一致，浏览器引擎也实际应用了 180° 倒置变换。命令以 `Electron reversed-card smoke test passed on draw 1` 成功结束。
+
+## Electron 最小素材包与图片卡验证
+
+桌面端全界面冒烟测试已扩展为创建临时最小素材包、写入 `manifest.json`、调用真实 `loadAssetPack` 校验、通过 `taluosha-asset://` 协议映射图片，并把 108 个游戏牌实体 ID 映射到同一张最小 PNG 测试图。
+
+在 Electron 中实际加载该素材包并连续提交抽牌后，第 2 次抽牌得到 `#1:S=R/C=R/D=R/CSS=Y`、`#2:S=R/C=R/D=R/CSS=Y`、`#3:S=R/C=R/D=R/CSS=Y`。三张均为本地图片卡，均命中倒置类，且计算 `transform` 非 `none`；测试以 `Electron reversed-card smoke test passed on draw 2` 成功结束。这验证了 manifest 校验、本地导入映射、桌面渲染和整张图片卡倒置处于同一有效链路。
+
+扩展后的双向测试会连续抽牌，直到同时见到正位与逆位本地图片卡；它断言正位图片卡的 `data-orientation` 为 `upright`、不带 `sgs-card--reversed` 且计算 `transform` 为 `none`，逆位图片卡则为 `reversed`、带倒置类且计算 `transform` 非 `none`。最新一次首次抽牌即得到 `#1:S=R/C=R/D=R/CSS=Y`、`#2:S=U/C=U/D=U/CSS=N`、`#3:S=U/C=U/D=U/CSS=N`，双向断言成功通过。
