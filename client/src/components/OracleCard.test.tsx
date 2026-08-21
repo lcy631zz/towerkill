@@ -18,7 +18,7 @@ const testCard = {
 
 describe("OracleCard", () => {
   it("清晰展示正位牌名、类型、花色点数与象征", () => {
-    render(<OracleCard card={testCard} orientation="upright" index={2} />);
+    const { container } = render(<OracleCard card={testCard} orientation="upright" index={2} />);
 
     expect(screen.getByText("五谷丰登")).toBeTruthy();
     expect(screen.getByText("游戏牌")).toBeTruthy();
@@ -26,12 +26,18 @@ describe("OracleCard", () => {
     expect(screen.getByText("游戏牌·锦囊", { exact: false })).toBeTruthy();
     expect(screen.getByText("资源显现、各取所需、分配")).toBeTruthy();
     expect(screen.queryByText(/正位|逆位|倒着/)).toBeNull();
+    expect(container.querySelector(".sgs-card__top")).toBeTruthy();
+    expect(container.querySelector(".sgs-card__corner")).toBeTruthy();
+    expect(container.querySelector(".sgs-card__art")).toBeTruthy();
+    expect(container.querySelector(".sgs-card__body")).toBeTruthy();
+    expect(container.querySelector('[data-orientation="upright"]')).toBeTruthy();
   });
 
   it("逆位时仅旋转整张卡，不显示额外状态标签", () => {
     const { container } = render(<OracleCard card={testCard} orientation="reversed" index={1} />);
 
     expect(container.querySelector(".oracle-card--reversed")).toBeTruthy();
+    expect(container.querySelector('[data-orientation="reversed"]')).toBeTruthy();
     expect(screen.queryByText(/正位|逆位|倒着/)).toBeNull();
   });
 

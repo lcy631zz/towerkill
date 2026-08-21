@@ -44,6 +44,7 @@ describe("仪式洗牌", () => {
     expect(orientations).toContain("upright");
     expect(orientations).toContain("reversed");
   });
+
 });
 
 describe("经典标准牌池", () => {
