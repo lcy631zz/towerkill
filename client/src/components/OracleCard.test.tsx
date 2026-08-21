@@ -34,4 +34,11 @@ describe("OracleCard", () => {
     expect(screen.getByText("逆位 · 倒着")).toBeTruthy();
     expect(container.querySelector(".oracle-card--reversed")).toBeTruthy();
   });
+
+  it("有本地素材映射时显示完整图片，逆位仍倒置整张卡", () => {
+    const { container } = render(<OracleCard card={testCard} orientation="reversed" index={3} assetUrl="taluosha-asset://card/game-001" />);
+
+    expect(screen.getByRole("img", { name: "五谷丰登 本地卡图" }).getAttribute("src")).toBe("taluosha-asset://card/game-001");
+    expect(container.querySelector(".sgs-card--image.oracle-card--reversed")).toBeTruthy();
+  });
 });

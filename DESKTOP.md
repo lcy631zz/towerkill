@@ -29,6 +29,12 @@ pnpm desktop:package
 
 Ollama 提供 OpenAI 兼容接口；本地接口无需身份验证，常见地址为 `http://127.0.0.1:11434/v1`。[2] 在 Electron EXE 中选择“本地 OpenAI 兼容服务（Ollama）”，填写本机已下载的模型名即可。网页预览出于浏览器网络边界，不能代替桌面 EXE 访问你的电脑本机模型。
 
+## 导入本地卡图
+
+Windows EXE 的“**本地卡图 / ASSETS**”区提供“**[ IMPORT ] 选择素材文件夹**”按钮。用户选择含 `manifest.json` 的文件夹后，程序仅在本机读取清单和清单中列出的 PNG、JPG、JPEG 或 WEBP 图片。图片不会上传至服务器、不会写入数据库，也不会随 EXE 重新分发。
+
+清单以本项目的实体牌 ID 对应相对文件路径，例如 `game-001`、`game-046` 与 `general-015`。同名游戏牌可能有多个实体条目，因此应逐条映射。示例和完整格式说明在 [`assets-example/README.md`](./assets-example/README.md)。找不到某个条目时，程序自动保留该张牌的文字卡面；抽到逆位时，对加载成功的**整张本地卡图**施加 180° 旋转显示。
+
 ## 参考
 
 1. [electron-builder 官网](https://www.electron.build/)
