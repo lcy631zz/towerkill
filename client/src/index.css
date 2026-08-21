@@ -1,177 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Mono&display=swap');
 @import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Cormorant Garamond", "Noto Serif SC", serif;
+  --font-serif: "Noto Serif SC", serif;
+  --font-mono: "Space Mono", monospace;
 }
 
-:root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: #070812; font-family: var(--font-serif); }
+button, input, textarea { font: inherit; }
 
-.dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
-}
+.ritual-bg { background-color: #080a14; background-image: radial-gradient(circle at 16% 18%, rgba(125, 60, 82, .22), transparent 26rem), radial-gradient(circle at 85% 18%, rgba(145, 108, 48, .13), transparent 25rem), radial-gradient(rgba(231, 210, 166, .13) .65px, transparent .65px), radial-gradient(rgba(231, 210, 166, .07) .6px, transparent .6px), linear-gradient(180deg, #0d0c17 0%, #080a14 46%, #0b0a13 100%); background-size: auto, auto, 39px 39px, 71px 71px, auto; background-position: center, center, 0 0, 22px 37px, center; }
+.mist-panel { border: 1px solid rgba(214, 185, 120, .25); background: linear-gradient(145deg, rgba(30, 29, 43, .88), rgba(15, 16, 27, .82)); box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 22px 55px rgba(0,0,0,.22); backdrop-filter: blur(14px); }
+.card-back::before, .card-back::after { content: ""; position: absolute; pointer-events: none; width: 3.3rem; height: 3.3rem; opacity: .68; }
+.card-back::before { left: .65rem; top: .65rem; border-left: 1px solid rgba(209,177,104,.55); border-top: 1px solid rgba(209,177,104,.55); }
+.card-back::after { right: .65rem; bottom: .65rem; border-right: 1px solid rgba(209,177,104,.55); border-bottom: 1px solid rgba(209,177,104,.55); }
+.war-seal { display: grid; height: 2rem; width: 2rem; place-items: center; border: 1px solid #da8774; background: linear-gradient(135deg, #7d2932, #4f1725); box-shadow: inset 0 0 0 2px rgba(255,209,178,.14), 0 0 0 1px rgba(95,24,31,.9); color: #ffd9b6; font-family: var(--font-serif); font-size: 1.05rem; line-height: 1; transform: rotate(-4deg); transition: transform 180ms cubic-bezier(.23, 1, .32, 1); }
+.group:hover .war-seal { transform: rotate(0deg) scale(1.05); }
+.hero-hexagram { pointer-events: none; position: absolute; right: 2.5rem; top: -1.2rem; display: grid; grid-template-columns: repeat(4, 1fr); width: 9rem; transform: rotate(18deg); opacity: .26; }
+.hero-hexagram span { display: grid; aspect-ratio: 1; place-items: center; border: 1px solid rgba(206,174,103,.7); color: #debf78; font-family: var(--font-serif); font-size: .9rem; }
+.ritual-numbers { position: relative; }
+.ritual-numbers::before { content: "天 / 地 / 人"; position: absolute; right: 0; top: -1.25rem; color: rgba(211,174,96,.58); font-family: var(--font-mono); font-size: 8px; letter-spacing: .19em; }
+.ritual-number { text-align: center; text-shadow: 0 0 14px rgba(237,193,106,.34); }
+.ornament-line { display: flex; align-items: center; gap: .8rem; color: #c9aa6a; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; }
+.ornament-line::before, .ornament-line::after { content: ""; height: 1px; flex: 1; max-width: 6.5rem; background: linear-gradient(90deg, transparent, rgba(210,177,107,.7)); }
+.ornament-line::after { background: linear-gradient(90deg, rgba(210,177,107,.7), transparent); }
+.oracle-card-wrap { perspective: 1200px; }
+.oracle-card { transition: transform 420ms cubic-bezier(.23, 1, .32, 1), box-shadow 420ms cubic-bezier(.23, 1, .32, 1); }
+.oracle-card-wrap:hover .oracle-card { transform: translateY(-7px) rotateX(2deg); box-shadow: 0 29px 52px rgba(0,0,0,.44); }
+.oracle-card--reversed { transform: rotate(180deg); }
+.oracle-card-wrap:hover .oracle-card--reversed { transform: translateY(-7px) rotate(180deg) rotateX(2deg); }
+.sigil { min-height: 82px; display: flex; flex-direction: column; justify-content: center; gap: .35rem; border: 1px solid rgba(216,189,124,.2); border-radius: .65rem; background: rgba(5,7,13,.34); padding: .7rem; text-align: center; }
+.sigil span { color: #bea66d; font-family: var(--font-mono); font-size: 9px; letter-spacing: .12em; }
+.sigil b { color: #f5e5c3; font-size: .84rem; font-weight: 500; }
+.ritual-prose { color: #d6c5a5; font-size: .95rem; line-height: 1.85; }
+.ritual-prose h3 { margin-top: 1.65rem; color: #f5e5c3; font-family: var(--font-display); font-size: 1.55rem; letter-spacing: .07em; }
+.ritual-prose h3:first-child { margin-top: 0; }
+.ritual-prose strong { color: #efd38e; }
+.ritual-prose blockquote { border-left-color: #c69d52; color: #dac8a7; }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
-  }
-}
-
-@layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
-    padding-right: 1rem;
-  }
-
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
-
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem; /* 32px - desktop padding */
-      padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
-    }
-  }
-}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+@media (max-width: 640px) { .hero-hexagram { right: 0; top: -2rem; opacity: .16; } }

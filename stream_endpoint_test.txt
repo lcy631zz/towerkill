@@ -1,0 +1,2214 @@
+event: delta
+data: {"text":"娱乐"}
+
+event: delta
+data: {"text":"占"}
+
+event: delta
+data: {"text":"卜"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"切"}
+
+event: delta
+data: {"text":"勿"}
+
+event: delta
+data: {"text":"迷"}
+
+event: delta
+data: {"text":"信"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"结果"}
+
+event: delta
+data: {"text":"不"}
+
+event: delta
+data: {"text":"构"}
+
+event: delta
+data: {"text":"成"}
+
+event: delta
+data: {"text":"任何"}
+
+event: delta
+data: {"text":"现实"}
+
+event: delta
+data: {"text":"决"}
+
+event: delta
+data: {"text":"策"}
+
+event: delta
+data: {"text":"依据"}
+
+event: delta
+data: {"text":"。\n\n"}
+
+event: delta
+data: {"text":"###"}
+
+event: delta
+data: {"text":" 塔"}
+
+event: delta
+data: {"text":"罗"}
+
+event: delta
+data: {"text":" ·"}
+
+event: delta
+data: {"text":" 三"}
+
+event: delta
+data: {"text":"牌"}
+
+event: delta
+data: {"text":"叙"}
+
+event: delta
+data: {"text":"事"}
+
+event: delta
+data: {"text":"\n"}
+
+event: delta
+data: {"text":"牌"}
+
+event: delta
+data: {"text":"面"}
+
+event: delta
+data: {"text":"分"}
+
+event: delta
+data: {"text":"列"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"「"}
+
+event: delta
+data: {"text":"关"}
+
+event: delta
+data: {"text":"羽"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"逆"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"）"}
+
+event: delta
+data: {"text":"——"}
+
+event: delta
+data: {"text":"夏"}
+
+event: delta
+data: {"text":"侯"}
+
+event: delta
+data: {"text":"惇"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"逆"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"）"}
+
+event: delta
+data: {"text":"——"}
+
+event: delta
+data: {"text":"大"}
+
+event: delta
+data: {"text":"宛"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"正"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"）"}
+
+event: delta
+data: {"text":"」，"}
+
+event: delta
+data: {"text":"同"}
+
+event: delta
+data: {"text":"一"}
+
+event: delta
+data: {"text":"组"}
+
+event: delta
+data: {"text":"形"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"讲"}
+
+event: delta
+data: {"text":"一个"}
+
+event: delta
+data: {"text":"连"}
+
+event: delta
+data: {"text":"贯"}
+
+event: delta
+data: {"text":"故事"}
+
+event: delta
+data: {"text":"。"}
+
+event: delta
+data: {"text":"关"}
+
+event: delta
+data: {"text":"羽"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"征"}
+
+event: delta
+data: {"text":"词"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"“"}
+
+event: delta
+data: {"text":"原则"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"担当"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"以"}
+
+event: delta
+data: {"text":"义"}
+
+event: delta
+data: {"text":"立"}
+
+event: delta
+data: {"text":"身"}
+
+event: delta
+data: {"text":"”，"}
+
+event: delta
+data: {"text":"逆"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"呈"}
+
+event: delta
+data: {"text":"现"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"原则"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"刚"}
+
+event: delta
+data: {"text":"性"}
+
+event: delta
+data: {"text":"在"}
+
+event: delta
+data: {"text":"推进"}
+
+event: delta
+data: {"text":"上"}
+
+event: delta
+data: {"text":"反"}
+
+event: delta
+data: {"text":"成"}
+
+event: delta
+data: {"text":"阻"}
+
+event: delta
+data: {"text":"力"}
+
+event: delta
+data: {"text":"："}
+
+event: delta
+data: {"text":"坚持"}
+
+event: delta
+data: {"text":"本"}
+
+event: delta
+data: {"text":"心"}
+
+event: delta
+data: {"text":"很好"}
+
+event: delta
+data: {"text":"，但"}
+
+event: delta
+data: {"text":"当前"}
+
+event: delta
+data: {"text":"形式"}
+
+event: delta
+data: {"text":"可能"}
+
+event: delta
+data: {"text":"把"}
+
+event: delta
+data: {"text":"你"}
+
+event: delta
+data: {"text":"钉"}
+
+event: delta
+data: {"text":"在"}
+
+event: delta
+data: {"text":"一个"}
+
+event: delta
+data: {"text":"不可"}
+
+event: delta
+data: {"text":"动"}
+
+event: delta
+data: {"text":"弹"}
+
+event: delta
+data: {"text":"的位置"}
+
+event: delta
+data: {"text":"。"}
+
+event: delta
+data: {"text":"夏"}
+
+event: delta
+data: {"text":"侯"}
+
+event: delta
+data: {"text":"惇"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"“"}
+
+event: delta
+data: {"text":"反"}
+
+event: delta
+data: {"text":"弹"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"意"}
+
+event: delta
+data: {"text":"志"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"守"}
+
+event: delta
+data: {"text":"住"}
+
+event: delta
+data: {"text":"底"}
+
+event: delta
+data: {"text":"线"}
+
+event: delta
+data: {"text":"”"}
+
+event: delta
+data: {"text":"同"}
+
+event: delta
+data: {"text":"样"}
+
+event: delta
+data: {"text":"逆"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"显示"}
+
+event: delta
+data: {"text":"守"}
+
+event: delta
+data: {"text":"护"}
+
+event: delta
+data: {"text":"与"}
+
+event: delta
+data: {"text":"反"}
+
+event: delta
+data: {"text":"抗"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"能"}
+
+event: delta
+data: {"text":"量"}
+
+event: delta
+data: {"text":"被"}
+
+event: delta
+data: {"text":"耗"}
+
+event: delta
+data: {"text":"损"}
+
+event: delta
+data: {"text":"或"}
+
+event: delta
+data: {"text":"过"}
+
+event: delta
+data: {"text":"度"}
+
+event: delta
+data: {"text":"防"}
+
+event: delta
+data: {"text":"御"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"容易"}
+
+event: delta
+data: {"text":"与"}
+
+event: delta
+data: {"text":"外"}
+
+event: delta
+data: {"text":"界"}
+
+event: delta
+data: {"text":"擦"}
+
+event: delta
+data: {"text":"枪"}
+
+event: delta
+data: {"text":"走"}
+
+event: delta
+data: {"text":"火"}
+
+event: delta
+data: {"text":"。"}
+
+event: delta
+data: {"text":"大"}
+
+event: delta
+data: {"text":"宛"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"正"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"坐"}
+
+event: delta
+data: {"text":"骑"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"征"}
+
+event: delta
+data: {"text":"“"}
+
+event: delta
+data: {"text":"开"}
+
+event: delta
+data: {"text":"拓"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"缩"}
+
+event: delta
+data: {"text":"短"}
+
+event: delta
+data: {"text":"路径"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"争"}
+
+event: delta
+data: {"text":"取"}
+
+event: delta
+data: {"text":"先"}
+
+event: delta
+data: {"text":"机"}
+
+event: delta
+data: {"text":"”"}
+
+event: delta
+data: {"text":"——"}
+
+event: delta
+data: {"text":"它"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"能"}
+
+event: delta
+data: {"text":"把"}
+
+event: delta
+data: {"text":"你"}
+
+event: delta
+data: {"text":"从"}
+
+event: delta
+data: {"text":"僵"}
+
+event: delta
+data: {"text":"局"}
+
+event: delta
+data: {"text":"中"}
+
+event: delta
+data: {"text":"带"}
+
+event: delta
+data: {"text":"出的"}
+
+event: delta
+data: {"text":"那"}
+
+event: delta
+data: {"text":"匹"}
+
+event: delta
+data: {"text":"马"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"实际"}
+
+event: delta
+data: {"text":"效"}
+
+event: delta
+data: {"text":"应"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"把"}
+
+event: delta
+data: {"text":"距离"}
+
+event: delta
+data: {"text":"拉"}
+
+event: delta
+data: {"text":"近"}
+
+event: delta
+data: {"text":"，使"}
+
+event: delta
+data: {"text":"得"}
+
+event: delta
+data: {"text":"行动"}
+
+event: delta
+data: {"text":"更"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"可"}
+
+event: delta
+data: {"text":"实施"}
+
+event: delta
+data: {"text":"。\n\n"}
+
+event: delta
+data: {"text":"###"}
+
+event: delta
+data: {"text":" 梅"}
+
+event: delta
+data: {"text":"花"}
+
+event: delta
+data: {"text":"易"}
+
+event: delta
+data: {"text":"数"}
+
+event: delta
+data: {"text":" ·"}
+
+event: delta
+data: {"text":" 卦"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"脉"}
+
+event: delta
+data: {"text":"络"}
+
+event: delta
+data: {"text":"\n"}
+
+event: delta
+data: {"text":"梅"}
+
+event: delta
+data: {"text":"花"}
+
+event: delta
+data: {"text":"卦"}
+
+event: delta
+data: {"text":"列"}
+
+event: delta
+data: {"text":"："}
+
+event: delta
+data: {"text":"主"}
+
+event: delta
+data: {"text":"卦"}
+
+event: delta
+data: {"text":"天"}
+
+event: delta
+data: {"text":"山"}
+
+event: delta
+data: {"text":"遁"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"互"}
+
+event: delta
+data: {"text":"卦"}
+
+event: delta
+data: {"text":"天"}
+
+event: delta
+data: {"text":"风"}
+
+event: delta
+data: {"text":"姤"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"变"}
+
+event: delta
+data: {"text":"卦"}
+
+event: delta
+data: {"text":"火"}
+
+event: delta
+data: {"text":"山"}
+
+event: delta
+data: {"text":"旅"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"动"}
+
+event: delta
+data: {"text":"爻"}
+
+event: delta
+data: {"text":"第五"}
+
+event: delta
+data: {"text":"。"}
+
+event: delta
+data: {"text":"卦"}
+
+event: delta
+data: {"text":"中"}
+
+event: delta
+data: {"text":"体"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"艮"}
+
+event: delta
+data: {"text":"（土"}
+
+event: delta
+data: {"text":"）、"}
+
+event: delta
+data: {"text":"用"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"乾"}
+
+event: delta
+data: {"text":"（金"}
+
+event: delta
+data: {"text":"），"}
+
+event: delta
+data: {"text":"并"}
+
+event: delta
+data: {"text":"且"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"“"}
+
+event: delta
+data: {"text":"体"}
+
+event: delta
+data: {"text":"生"}
+
+event: delta
+data: {"text":"用"}
+
+event: delta
+data: {"text":"”"}
+
+event: delta
+data: {"text":"关系"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"需要"}
+
+event: delta
+data: {"text":"主动"}
+
+event: delta
+data: {"text":"投入"}
+
+event: delta
+data: {"text":"，但"}
+
+event: delta
+data: {"text":"也"}
+
+event: delta
+data: {"text":"应"}
+
+event: delta
+data: {"text":"留"}
+
+event: delta
+data: {"text":"意"}
+
+event: delta
+data: {"text":"精"}
+
+event: delta
+data: {"text":"力"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"边"}
+
+event: delta
+data: {"text":"界"}
+
+event: delta
+data: {"text":"）。"}
+
+event: delta
+data: {"text":"天"}
+
+event: delta
+data: {"text":"山"}
+
+event: delta
+data: {"text":"遁"}
+
+event: delta
+data: {"text":"语"}
+
+event: delta
+data: {"text":"意"}
+
+event: delta
+data: {"text":"偏"}
+
+event: delta
+data: {"text":"向"}
+
+event: delta
+data: {"text":"策略"}
+
+event: delta
+data: {"text":"性的"}
+
+event: delta
+data: {"text":"退"}
+
+event: delta
+data: {"text":"让"}
+
+event: delta
+data: {"text":"或"}
+
+event: delta
+data: {"text":"调整"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"天"}
+
+event: delta
+data: {"text":"风"}
+
+event: delta
+data: {"text":"姤"}
+
+event: delta
+data: {"text":"带"}
+
+event: delta
+data: {"text":"来"}
+
+event: delta
+data: {"text":"相"}
+
+event: delta
+data: {"text":"遇"}
+
+event: delta
+data: {"text":"与"}
+
+event: delta
+data: {"text":"契"}
+
+event: delta
+data: {"text":"机"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"讯"}
+
+event: delta
+data: {"text":"息"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"变"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"火"}
+
+event: delta
+data: {"text":"山"}
+
+event: delta
+data: {"text":"旅"}
+
+event: delta
+data: {"text":"则"}
+
+event: delta
+data: {"text":"像"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"行"}
+
+event: delta
+data: {"text":"旅"}
+
+event: delta
+data: {"text":"中的"}
+
+event: delta
+data: {"text":"体验"}
+
+event: delta
+data: {"text":"与"}
+
+event: delta
+data: {"text":"试"}
+
+event: delta
+data: {"text":"验"}
+
+event: delta
+data: {"text":"。"}
+
+event: delta
+data: {"text":"第五"}
+
+event: delta
+data: {"text":"爻"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"动"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"提示"}
+
+event: delta
+data: {"text":"此"}
+
+event: delta
+data: {"text":"刻"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"关键"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"转"}
+
+event: delta
+data: {"text":"折"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"："}
+
+event: delta
+data: {"text":"通过"}
+
+event: delta
+data: {"text":"有"}
+
+event: delta
+data: {"text":"意识"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"收"}
+
+event: delta
+data: {"text":"缩"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"整"}
+
+event: delta
+data: {"text":"顿"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"遁"}
+
+event: delta
+data: {"text":"）"}
+
+event: delta
+data: {"text":"可"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"后"}
+
+event: delta
+data: {"text":"续"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"短"}
+
+event: delta
+data: {"text":"程"}
+
+event: delta
+data: {"text":"突"}
+
+event: delta
+data: {"text":"进"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"大"}
+
+event: delta
+data: {"text":"宛"}
+
+event: delta
+data: {"text":"）"}
+
+event: delta
+data: {"text":"创造"}
+
+event: delta
+data: {"text":"条件"}
+
+event: delta
+data: {"text":"。\n\n"}
+
+event: delta
+data: {"text":"###"}
+
+event: delta
+data: {"text":" 六"}
+
+event: delta
+data: {"text":"壬"}
+
+event: delta
+data: {"text":"意"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"旁"}
+
+event: delta
+data: {"text":"注"}
+
+event: delta
+data: {"text":"\n"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"此"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"“"}
+
+event: delta
+data: {"text":"六"}
+
+event: delta
+data: {"text":"壬"}
+
+event: delta
+data: {"text":"意"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"旁"}
+
+event: delta
+data: {"text":"注"}
+
+event: delta
+data: {"text":"”，"}
+
+event: delta
+data: {"text":"基"}
+
+event: delta
+data: {"text":"于"}
+
+event: delta
+data: {"text":"本"}
+
+event: delta
+data: {"text":"次"}
+
+event: delta
+data: {"text":"数字"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"牌"}
+
+event: delta
+data: {"text":"面"}
+
+event: delta
+data: {"text":"与"}
+
+event: delta
+data: {"text":"问"}
+
+event: delta
+data: {"text":"事"}
+
+event: delta
+data: {"text":"语"}
+
+event: delta
+data: {"text":"境"}
+
+event: delta
+data: {"text":"作"}
+
+event: delta
+data: {"text":"娱乐"}
+
+event: delta
+data: {"text":"性"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"征"}
+
+event: delta
+data: {"text":"联"}
+
+event: delta
+data: {"text":"想"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"非"}
+
+event: delta
+data: {"text":"完整"}
+
+event: delta
+data: {"text":"的大"}
+
+event: delta
+data: {"text":"六"}
+
+event: delta
+data: {"text":"壬"}
+
+event: delta
+data: {"text":"排"}
+
+event: delta
+data: {"text":"盘"}
+
+event: delta
+data: {"text":"。）"}
+
+event: delta
+data: {"text":"三"}
+
+event: delta
+data: {"text":"张"}
+
+event: delta
+data: {"text":"牌"}
+
+event: delta
+data: {"text":"与"}
+
+event: delta
+data: {"text":"第五"}
+
+event: delta
+data: {"text":"动"}
+
+event: delta
+data: {"text":"爻"}
+
+event: delta
+data: {"text":"合"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"意"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"："}
+
+event: delta
+data: {"text":"两"}
+
+event: delta
+data: {"text":"名"}
+
+event: delta
+data: {"text":"名"}
+
+event: delta
+data: {"text":"将"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"逆"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"像"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"被"}
+
+event: delta
+data: {"text":"战"}
+
+event: delta
+data: {"text":"场"}
+
+event: delta
+data: {"text":"边"}
+
+event: delta
+data: {"text":"缘"}
+
+event: delta
+data: {"text":"化"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"守"}
+
+event: delta
+data: {"text":"护"}
+
+event: delta
+data: {"text":"者"}
+
+event: delta
+data: {"text":"，而"}
+
+event: delta
+data: {"text":"正"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"坐"}
+
+event: delta
+data: {"text":"骑"}
+
+event: delta
+data: {"text":"像"}
+
+event: delta
+data: {"text":"一"}
+
+event: delta
+data: {"text":"条"}
+
+event: delta
+data: {"text":"可"}
+
+event: delta
+data: {"text":"乘"}
+
+event: delta
+data: {"text":"之"}
+
+event: delta
+data: {"text":"路"}
+
+event: delta
+data: {"text":"——"}
+
+event: delta
+data: {"text":"画"}
+
+event: delta
+data: {"text":"面"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"“"}
+
+event: delta
+data: {"text":"退"}
+
+event: delta
+data: {"text":"居"}
+
+event: delta
+data: {"text":"整"}
+
+event: delta
+data: {"text":"顿"}
+
+event: delta
+data: {"text":" →"}
+
+event: delta
+data: {"text":" "}
+
+event: delta
+data: {"text":"结"}
+
+event: delta
+data: {"text":"盟"}
+
+event: delta
+data: {"text":"跨"}
+
+event: delta
+data: {"text":"越"}
+
+event: delta
+data: {"text":" →"}
+
+event: delta
+data: {"text":" "}
+
+event: delta
+data: {"text":"乘"}
+
+event: delta
+data: {"text":"势"}
+
+event: delta
+data: {"text":"前"}
+
+event: delta
+data: {"text":"行"}
+
+event: delta
+data: {"text":"”。"}
+
+event: delta
+data: {"text":"数字"}
+
+event: delta
+data: {"text":"与"}
+
+event: delta
+data: {"text":"卦"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"提示"}
+
+event: delta
+data: {"text":"："}
+
+event: delta
+data: {"text":"精"}
+
+event: delta
+data: {"text":"力"}
+
+event: delta
+data: {"text":"分"}
+
+event: delta
+data: {"text":"配"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"关键"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"既"}
+
+event: delta
+data: {"text":"要"}
+
+event: delta
+data: {"text":"守"}
+
+event: delta
+data: {"text":"住"}
+
+event: delta
+data: {"text":"原则"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"骨"}
+
+event: delta
+data: {"text":"架"}
+
+event: delta
+data: {"text":"，也"}
+
+event: delta
+data: {"text":"要"}
+
+event: delta
+data: {"text":"给"}
+
+event: delta
+data: {"text":"行动"}
+
+event: delta
+data: {"text":"留"}
+
+event: delta
+data: {"text":"出"}
+
+event: delta
+data: {"text":"流"}
+
+event: delta
+data: {"text":"动"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"缝"}
+
+event: delta
+data: {"text":"隙"}
+
+event: delta
+data: {"text":"。\n\n"}
+
+event: delta
+data: {"text":"###"}
+
+event: delta
+data: {"text":" 综合"}
+
+event: delta
+data: {"text":"结"}
+
+event: delta
+data: {"text":"论"}
+
+event: delta
+data: {"text":" ·"}
+
+event: delta
+data: {"text":" 可"}
+
+event: delta
+data: {"text":"尝"}
+
+event: delta
+data: {"text":"试"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"下一"}
+
+event: delta
+data: {"text":"步"}
+
+event: delta
+data: {"text":"\n"}
+
+event: delta
+data: {"text":"结"}
+
+event: delta
+data: {"text":"论"}
+
+event: delta
+data: {"text":"："}
+
+event: delta
+data: {"text":"当前"}
+
+event: delta
+data: {"text":"创"}
+
+event: delta
+data: {"text":"作"}
+
+event: delta
+data: {"text":"处"}
+
+event: delta
+data: {"text":"在"}
+
+event: delta
+data: {"text":"“"}
+
+event: delta
+data: {"text":"原则"}
+
+event: delta
+data: {"text":"被"}
+
+event: delta
+data: {"text":"考"}
+
+event: delta
+data: {"text":"验"}
+
+event: delta
+data: {"text":" +"}
+
+event: delta
+data: {"text":" 能"}
+
+event: delta
+data: {"text":"量"}
+
+event: delta
+data: {"text":"需"}
+
+event: delta
+data: {"text":"调"}
+
+event: delta
+data: {"text":"配"}
+
+event: delta
+data: {"text":"”的"}
+
+event: delta
+data: {"text":"阶段"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"最"}
+
+event: delta
+data: {"text":"合"}
+
+event: delta
+data: {"text":"宜"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"路径"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"短"}
+
+event: delta
+data: {"text":"退"}
+
+event: delta
+data: {"text":"后"}
+
+event: delta
+data: {"text":"快"}
+
+event: delta
+data: {"text":"进"}
+
+event: delta
+data: {"text":"——"}
+
+event: delta
+data: {"text":"收"}
+
+event: delta
+data: {"text":"束"}
+
+event: delta
+data: {"text":"不可"}
+
+event: delta
+data: {"text":"行"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"坚持"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"保"}
+
+event: delta
+data: {"text":"留"}
+
+event: delta
+data: {"text":"核心"}
+
+event: delta
+data: {"text":"价值"}
+
+event: delta
+data: {"text":"，再"}
+
+event: delta
+data: {"text":"用"}
+
+event: delta
+data: {"text":"可"}
+
+event: delta
+data: {"text":"缩"}
+
+event: delta
+data: {"text":"短"}
+
+event: delta
+data: {"text":"距离"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"手"}
+
+event: delta
+data: {"text":"段"}
+
+event: delta
+data: {"text":"争"}
+
+event: delta
+data: {"text":"取"}
+
+event: delta
+data: {"text":"先"}
+
+event: delta
+data: {"text":"机"}
+
+event: delta
+data: {"text":"。"}
+
+event: delta
+data: {"text":"可"}
+
+event: delta
+data: {"text":"尝"}
+
+event: delta
+data: {"text":"试"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"下一"}
+
+event: delta
+data: {"text":"步"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"低"}
+
+event: delta
+data: {"text":"风险"}
+
+event: delta
+data: {"text":"、"}
+
+event: delta
+data: {"text":"可"}
+
+event: delta
+data: {"text":"撤"}
+
+event: delta
+data: {"text":"回"}
+
+event: delta
+data: {"text":"）"}
+
+event: delta
+data: {"text":"：\n"}
+
+event: delta
+data: {"text":"-"}
+
+event: delta
+data: {"text":" 把"}
+
+event: delta
+data: {"text":"一个"}
+
+event: delta
+data: {"text":"大"}
+
+event: delta
+data: {"text":"目标"}
+
+event: delta
+data: {"text":"拆"}
+
+event: delta
+data: {"text":"成"}
+
+event: delta
+data: {"text":"三"}
+
+event: delta
+data: {"text":"项"}
+
+event: delta
+data: {"text":"小"}
+
+event: delta
+data: {"text":"实验"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"先"}
+
+event: delta
+data: {"text":"做"}
+
+event: delta
+data: {"text":"一个"}
+
+event: delta
+data: {"text":"能"}
+
+event: delta
+data: {"text":"在"}
+
+event: delta
+data: {"text":"一"}
+
+event: delta
+data: {"text":"周"}
+
+event: delta
+data: {"text":"内"}
+
+event: delta
+data: {"text":"完成"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"原"}
+
+event: delta
+data: {"text":"型"}
+
+event: delta
+data: {"text":"；"}
+
+event: delta
+data: {"text":"  \n"}
+
+event: delta
+data: {"text":"-"}
+
+event: delta
+data: {"text":" 找"}
+
+event: delta
+data: {"text":"一"}
+
+event: delta
+data: {"text":"位"}
+
+event: delta
+data: {"text":"可信"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"同行"}
+
+event: delta
+data: {"text":"或"}
+
+event: delta
+data: {"text":"顾"}
+
+event: delta
+data: {"text":"友"}
+
+event: delta
+data: {"text":"做"}
+
+event: delta
+data: {"text":"短"}
+
+event: delta
+data: {"text":"时"}
+
+event: delta
+data: {"text":"协"}
+
+event: delta
+data: {"text":"作"}
+
+event: delta
+data: {"text":"（"}
+
+event: delta
+data: {"text":"象"}
+
+event: delta
+data: {"text":"征"}
+
+event: delta
+data: {"text":"“大"}
+
+event: delta
+data: {"text":"宛"}
+
+event: delta
+data: {"text":"”"}
+
+event: delta
+data: {"text":"缩"}
+
+event: delta
+data: {"text":"短"}
+
+event: delta
+data: {"text":"距离"}
+
+event: delta
+data: {"text":"）；"}
+
+event: delta
+data: {"text":"  \n"}
+
+event: delta
+data: {"text":"-"}
+
+event: delta
+data: {"text":" 列"}
+
+event: delta
+data: {"text":"出"}
+
+event: delta
+data: {"text":"你"}
+
+event: delta
+data: {"text":"最"}
+
+event: delta
+data: {"text":"不"}
+
+event: delta
+data: {"text":"愿"}
+
+event: delta
+data: {"text":"放"}
+
+event: delta
+data: {"text":"弃"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"三"}
+
+event: delta
+data: {"text":"项"}
+
+event: delta
+data: {"text":"原则"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"明确"}
+
+event: delta
+data: {"text":"哪些"}
+
+event: delta
+data: {"text":"是"}
+
+event: delta
+data: {"text":"可"}
+
+event: delta
+data: {"text":"变"}
+
+event: delta
+data: {"text":"通"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"边"}
+
+event: delta
+data: {"text":"界"}
+
+event: delta
+data: {"text":"；"}
+
+event: delta
+data: {"text":"  \n"}
+
+event: delta
+data: {"text":"-"}
+
+event: delta
+data: {"text":" "}
+
+event: delta
+data: {"text":"设"}
+
+event: delta
+data: {"text":"一个"}
+
+event: delta
+data: {"text":"为"}
+
+event: delta
+data: {"text":"期"}
+
+event: delta
+data: {"text":"一"}
+
+event: delta
+data: {"text":"周"}
+
+event: delta
+data: {"text":"的"}
+
+event: delta
+data: {"text":"“"}
+
+event: delta
+data: {"text":"调整"}
+
+event: delta
+data: {"text":"窗口"}
+
+event: delta
+data: {"text":"”，"}
+
+event: delta
+data: {"text":"期间"}
+
+event: delta
+data: {"text":"只"}
+
+event: delta
+data: {"text":"做"}
+
+event: delta
+data: {"text":"检"}
+
+event: delta
+data: {"text":"验"}
+
+event: delta
+data: {"text":"假"}
+
+event: delta
+data: {"text":"设"}
+
+event: delta
+data: {"text":"、不"}
+
+event: delta
+data: {"text":"做"}
+
+event: delta
+data: {"text":"重大"}
+
+event: delta
+data: {"text":"投入"}
+
+event: delta
+data: {"text":"。\n\n"}
+
+event: delta
+data: {"text":"娱乐"}
+
+event: delta
+data: {"text":"占"}
+
+event: delta
+data: {"text":"卜"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"切"}
+
+event: delta
+data: {"text":"勿"}
+
+event: delta
+data: {"text":"迷"}
+
+event: delta
+data: {"text":"信"}
+
+event: delta
+data: {"text":"，"}
+
+event: delta
+data: {"text":"结果"}
+
+event: delta
+data: {"text":"不"}
+
+event: delta
+data: {"text":"构"}
+
+event: delta
+data: {"text":"成"}
+
+event: delta
+data: {"text":"任何"}
+
+event: delta
+data: {"text":"现实"}
+
+event: delta
+data: {"text":"决"}
+
+event: delta
+data: {"text":"策"}
+
+event: delta
+data: {"text":"依据"}
+
+event: delta
+data: {"text":"。"}
+
+event: done
+data: {"seedFingerprint":"80abd00b36b9a6ad"}
+

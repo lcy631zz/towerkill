@@ -1,0 +1,653 @@
+{
+  "count": 108,
+  "specs": [
+    {
+      "sourceId": "game-001",
+      "key": "slash",
+      "suit": "♠",
+      "rank": "7"
+    },
+    {
+      "sourceId": "game-002",
+      "key": "slash",
+      "suit": "♠",
+      "rank": "8"
+    },
+    {
+      "sourceId": "game-003",
+      "key": "slash",
+      "suit": "♠",
+      "rank": "8"
+    },
+    {
+      "sourceId": "game-004",
+      "key": "slash",
+      "suit": "♠",
+      "rank": "9"
+    },
+    {
+      "sourceId": "game-005",
+      "key": "slash",
+      "suit": "♠",
+      "rank": "9"
+    },
+    {
+      "sourceId": "game-006",
+      "key": "slash",
+      "suit": "♠",
+      "rank": "10"
+    },
+    {
+      "sourceId": "game-007",
+      "key": "slash",
+      "suit": "♠",
+      "rank": "10"
+    },
+    {
+      "sourceId": "game-008",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-009",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "3"
+    },
+    {
+      "sourceId": "game-010",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "4"
+    },
+    {
+      "sourceId": "game-011",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "5"
+    },
+    {
+      "sourceId": "game-012",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "6"
+    },
+    {
+      "sourceId": "game-013",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "7"
+    },
+    {
+      "sourceId": "game-014",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "8"
+    },
+    {
+      "sourceId": "game-015",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "8"
+    },
+    {
+      "sourceId": "game-016",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "9"
+    },
+    {
+      "sourceId": "game-017",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "9"
+    },
+    {
+      "sourceId": "game-018",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "10"
+    },
+    {
+      "sourceId": "game-019",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "10"
+    },
+    {
+      "sourceId": "game-020",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "J"
+    },
+    {
+      "sourceId": "game-021",
+      "key": "slash",
+      "suit": "♣",
+      "rank": "J"
+    },
+    {
+      "sourceId": "game-022",
+      "key": "slash",
+      "suit": "♥",
+      "rank": "10"
+    },
+    {
+      "sourceId": "game-023",
+      "key": "slash",
+      "suit": "♥",
+      "rank": "10"
+    },
+    {
+      "sourceId": "game-024",
+      "key": "slash",
+      "suit": "♥",
+      "rank": "J"
+    },
+    {
+      "sourceId": "game-025",
+      "key": "slash",
+      "suit": "♦",
+      "rank": "6"
+    },
+    {
+      "sourceId": "game-026",
+      "key": "slash",
+      "suit": "♦",
+      "rank": "7"
+    },
+    {
+      "sourceId": "game-027",
+      "key": "slash",
+      "suit": "♦",
+      "rank": "8"
+    },
+    {
+      "sourceId": "game-028",
+      "key": "slash",
+      "suit": "♦",
+      "rank": "9"
+    },
+    {
+      "sourceId": "game-029",
+      "key": "slash",
+      "suit": "♦",
+      "rank": "10"
+    },
+    {
+      "sourceId": "game-030",
+      "key": "slash",
+      "suit": "♦",
+      "rank": "K"
+    },
+    {
+      "sourceId": "game-031",
+      "key": "jink",
+      "suit": "♥",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-032",
+      "key": "jink",
+      "suit": "♥",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-033",
+      "key": "jink",
+      "suit": "♥",
+      "rank": "K"
+    },
+    {
+      "sourceId": "game-034",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-035",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-036",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "3"
+    },
+    {
+      "sourceId": "game-037",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "4"
+    },
+    {
+      "sourceId": "game-038",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "5"
+    },
+    {
+      "sourceId": "game-039",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "6"
+    },
+    {
+      "sourceId": "game-040",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "7"
+    },
+    {
+      "sourceId": "game-041",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "8"
+    },
+    {
+      "sourceId": "game-042",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "9"
+    },
+    {
+      "sourceId": "game-043",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "10"
+    },
+    {
+      "sourceId": "game-044",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "J"
+    },
+    {
+      "sourceId": "game-045",
+      "key": "jink",
+      "suit": "♦",
+      "rank": "J"
+    },
+    {
+      "sourceId": "game-046",
+      "key": "peach",
+      "suit": "♥",
+      "rank": "3"
+    },
+    {
+      "sourceId": "game-047",
+      "key": "peach",
+      "suit": "♥",
+      "rank": "4"
+    },
+    {
+      "sourceId": "game-048",
+      "key": "peach",
+      "suit": "♥",
+      "rank": "6"
+    },
+    {
+      "sourceId": "game-049",
+      "key": "peach",
+      "suit": "♥",
+      "rank": "7"
+    },
+    {
+      "sourceId": "game-050",
+      "key": "peach",
+      "suit": "♥",
+      "rank": "8"
+    },
+    {
+      "sourceId": "game-051",
+      "key": "peach",
+      "suit": "♥",
+      "rank": "9"
+    },
+    {
+      "sourceId": "game-052",
+      "key": "peach",
+      "suit": "♥",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-053",
+      "key": "peach",
+      "suit": "♦",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-054",
+      "key": "dismantlement",
+      "suit": "♠",
+      "rank": "3"
+    },
+    {
+      "sourceId": "game-055",
+      "key": "dismantlement",
+      "suit": "♠",
+      "rank": "4"
+    },
+    {
+      "sourceId": "game-056",
+      "key": "dismantlement",
+      "suit": "♠",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-057",
+      "key": "dismantlement",
+      "suit": "♣",
+      "rank": "3"
+    },
+    {
+      "sourceId": "game-058",
+      "key": "dismantlement",
+      "suit": "♣",
+      "rank": "4"
+    },
+    {
+      "sourceId": "game-059",
+      "key": "dismantlement",
+      "suit": "♥",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-060",
+      "key": "snatch",
+      "suit": "♠",
+      "rank": "3"
+    },
+    {
+      "sourceId": "game-061",
+      "key": "snatch",
+      "suit": "♠",
+      "rank": "4"
+    },
+    {
+      "sourceId": "game-062",
+      "key": "snatch",
+      "suit": "♠",
+      "rank": "J"
+    },
+    {
+      "sourceId": "game-063",
+      "key": "snatch",
+      "suit": "♦",
+      "rank": "3"
+    },
+    {
+      "sourceId": "game-064",
+      "key": "snatch",
+      "suit": "♦",
+      "rank": "4"
+    },
+    {
+      "sourceId": "game-065",
+      "key": "duel",
+      "suit": "♠",
+      "rank": "A"
+    },
+    {
+      "sourceId": "game-066",
+      "key": "duel",
+      "suit": "♣",
+      "rank": "A"
+    },
+    {
+      "sourceId": "game-067",
+      "key": "duel",
+      "suit": "♦",
+      "rank": "A"
+    },
+    {
+      "sourceId": "game-068",
+      "key": "collateral",
+      "suit": "♣",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-069",
+      "key": "collateral",
+      "suit": "♣",
+      "rank": "K"
+    },
+    {
+      "sourceId": "game-070",
+      "key": "ex_nihilo",
+      "suit": "♥",
+      "rank": "7"
+    },
+    {
+      "sourceId": "game-071",
+      "key": "ex_nihilo",
+      "suit": "♥",
+      "rank": "8"
+    },
+    {
+      "sourceId": "game-072",
+      "key": "ex_nihilo",
+      "suit": "♥",
+      "rank": "9"
+    },
+    {
+      "sourceId": "game-073",
+      "key": "ex_nihilo",
+      "suit": "♥",
+      "rank": "J"
+    },
+    {
+      "sourceId": "game-074",
+      "key": "nullification",
+      "suit": "♠",
+      "rank": "J"
+    },
+    {
+      "sourceId": "game-075",
+      "key": "nullification",
+      "suit": "♣",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-076",
+      "key": "nullification",
+      "suit": "♣",
+      "rank": "K"
+    },
+    {
+      "sourceId": "game-077",
+      "key": "nullification",
+      "suit": "♦",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-078",
+      "key": "savage_assault",
+      "suit": "♠",
+      "rank": "7"
+    },
+    {
+      "sourceId": "game-079",
+      "key": "savage_assault",
+      "suit": "♠",
+      "rank": "K"
+    },
+    {
+      "sourceId": "game-080",
+      "key": "savage_assault",
+      "suit": "♣",
+      "rank": "7"
+    },
+    {
+      "sourceId": "game-081",
+      "key": "archery_attack",
+      "suit": "♥",
+      "rank": "A"
+    },
+    {
+      "sourceId": "game-082",
+      "key": "god_salvation",
+      "suit": "♥",
+      "rank": "A"
+    },
+    {
+      "sourceId": "game-083",
+      "key": "amazing_grace",
+      "suit": "♥",
+      "rank": "3"
+    },
+    {
+      "sourceId": "game-084",
+      "key": "amazing_grace",
+      "suit": "♥",
+      "rank": "4"
+    },
+    {
+      "sourceId": "game-085",
+      "key": "lightning",
+      "suit": "♠",
+      "rank": "A"
+    },
+    {
+      "sourceId": "game-086",
+      "key": "lightning",
+      "suit": "♥",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-087",
+      "key": "indulgence",
+      "suit": "♠",
+      "rank": "6"
+    },
+    {
+      "sourceId": "game-088",
+      "key": "indulgence",
+      "suit": "♣",
+      "rank": "6"
+    },
+    {
+      "sourceId": "game-089",
+      "key": "indulgence",
+      "suit": "♥",
+      "rank": "6"
+    },
+    {
+      "sourceId": "game-090",
+      "key": "crossbow",
+      "suit": "♣",
+      "rank": "A"
+    },
+    {
+      "sourceId": "game-091",
+      "key": "crossbow",
+      "suit": "♦",
+      "rank": "A"
+    },
+    {
+      "sourceId": "game-092",
+      "key": "qinggang_sword",
+      "suit": "♠",
+      "rank": "6"
+    },
+    {
+      "sourceId": "game-093",
+      "key": "ice_sword",
+      "suit": "♠",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-094",
+      "key": "double_swords",
+      "suit": "♠",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-095",
+      "key": "blade",
+      "suit": "♠",
+      "rank": "5"
+    },
+    {
+      "sourceId": "game-096",
+      "key": "spear",
+      "suit": "♠",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-097",
+      "key": "axe",
+      "suit": "♦",
+      "rank": "5"
+    },
+    {
+      "sourceId": "game-098",
+      "key": "halberd",
+      "suit": "♦",
+      "rank": "Q"
+    },
+    {
+      "sourceId": "game-099",
+      "key": "kylin_bow",
+      "suit": "♥",
+      "rank": "5"
+    },
+    {
+      "sourceId": "game-100",
+      "key": "eight_diagram",
+      "suit": "♠",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-101",
+      "key": "eight_diagram",
+      "suit": "♣",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-102",
+      "key": "nioh_shield",
+      "suit": "♣",
+      "rank": "2"
+    },
+    {
+      "sourceId": "game-103",
+      "key": "dilu",
+      "suit": "♣",
+      "rank": "5"
+    },
+    {
+      "sourceId": "game-104",
+      "key": "jueying",
+      "suit": "♠",
+      "rank": "5"
+    },
+    {
+      "sourceId": "game-105",
+      "key": "zhuahuangfeidian",
+      "suit": "♥",
+      "rank": "K"
+    },
+    {
+      "sourceId": "game-106",
+      "key": "chitu",
+      "suit": "♥",
+      "rank": "5"
+    },
+    {
+      "sourceId": "game-107",
+      "key": "dayuan",
+      "suit": "♠",
+      "rank": "K"
+    },
+    {
+      "sourceId": "game-108",
+      "key": "zixing",
+      "suit": "♦",
+      "rank": "K"
+    }
+  ]
+}

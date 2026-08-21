@@ -1,0 +1,1 @@
+ALTER TABLE `divinationRecords` MODIFY COLUMN `interpretation` text NOT NULL;

@@ -1,0 +1,222 @@
+[1;37m[[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/init.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/init.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/metadata.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/metadata.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/i18n/init.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/i18n/init.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/pkg/skills/init.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/pkg/skills/init.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/pkg/init.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/pkg/init.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/pkg/skills/halberd.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/pkg/skills/halberd.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/pkg/skills/crossbow.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/pkg/skills/crossbow.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/i18n/en_US.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/i18n/en_US.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/i18n/zh_CN.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/i18n/zh_CN.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"packages/standard_cards/i18n/vi_VN.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/packages/standard_cards/i18n/vi_VN.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"ltk/server/ai/init.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/ltk/server/ai/init.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"lua/core/mod_manager.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk0NTkwODU4MDU="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/FreeKill"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/FreeKill/blob/67f983b42e7c4568cc6e16d3b127da42ec9af89f/lua/core/mod_manager.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"lua/ai/smart-ai.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnkxMDE0MzM3"[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Mogara/QSanguosha"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha/blob/85baa7489157c023bb2528a40ce4ef4e12863387/lua/ai/smart-ai.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"extension-doc/18-Beta.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnkyOTM3NTk0OA=="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Mogara/QSanguosha-v2"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha-v2"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha-v2/blob/e8768851bd8054db9fd1b63cd6f1feca813590d7/extension-doc/18-Beta.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"lang/zh_CN/Package/StandardPackage.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnkxMDE0MzM3"[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Mogara/QSanguosha"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha/blob/85baa7489157c023bb2528a40ce4ef4e12863387/lang/zh_CN/Package/StandardPackage.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"extension-doc/12-SmartAI.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnkyOTM3NTk0OA=="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Mogara/QSanguosha-v2"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha-v2"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha-v2/blob/e8768851bd8054db9fd1b63cd6f1feca813590d7/extension-doc/12-SmartAI.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"lua/ai/smart-ai.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnkyOTM3NTk0OA=="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Mogara/QSanguosha-v2"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha-v2"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha-v2/blob/e8768851bd8054db9fd1b63cd6f1feca813590d7/lua/ai/smart-ai.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"standard_cards/init.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk4MDcxOTY0NzQ="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/freekill-core"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/freekill-core"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/freekill-core/blob/c19441690711b73ffb427b3e7974ec7e92e33bea/standard_cards/init.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"extension-doc/15-Activate.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnkyOTM3NTk0OA=="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Mogara/QSanguosha-v2"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha-v2"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Mogara/QSanguosha-v2/blob/e8768851bd8054db9fd1b63cd6f1feca813590d7/extension-doc/15-Activate.lua"[m
+  [1;37m}[m[1;37m,[m
+  [1;37m{[m
+    [1;34m"path"[m[1;37m:[m [32m"standard_cards/metadata.lua"[m[1;37m,[m
+    [1;34m"repository"[m[1;37m:[m [1;37m{[m
+      [1;34m"id"[m[1;37m:[m [32m"MDEwOlJlcG9zaXRvcnk4MDcxOTY0NzQ="[m[1;37m,[m
+      [1;34m"isFork"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"isPrivate"[m[1;37m:[m [33mfalse[m[1;37m,[m
+      [1;34m"nameWithOwner"[m[1;37m:[m [32m"Qsgs-Fans/freekill-core"[m[1;37m,[m
+      [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/freekill-core"[m
+    [1;37m}[m[1;37m,[m
+    [1;34m"url"[m[1;37m:[m [32m"https://github.com/Qsgs-Fans/freekill-core/blob/c19441690711b73ffb427b3e7974ec7e92e33bea/standard_cards/metadata.lua"[m
+  [1;37m}[m
+[1;37m][m
