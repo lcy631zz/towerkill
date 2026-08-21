@@ -53,3 +53,5 @@
 - [x] 截图验证新卡框的正位、逆位与窄屏布局，并更新视觉回归测试
 - [x] 创建名为 towerkill 的私有 GitHub 仓库并推送当前项目代码
 - [x] 提供当前项目的可下载版本与仓库访问说明
+- [x] 将 GitHub 仓库 lcy631zz/towerkill 改为公开并核验访问状态
+- [x] 生成 Windows win-unpacked 便携运行目录，并整理为解压后根目录可找到 EXE 的交付压缩包（尚未在真实 Windows 设备实测）
