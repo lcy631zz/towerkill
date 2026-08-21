@@ -1,6 +1,6 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { OracleCard } from "./OracleCard";
 
 afterEach(cleanup);
@@ -36,15 +36,28 @@ describe("OracleCard", () => {
   it("逆位时仅旋转整张卡，不显示额外状态标签", () => {
     const { container } = render(<OracleCard card={testCard} orientation="reversed" index={1} />);
 
-    expect(container.querySelector(".oracle-card--reversed")).toBeTruthy();
+    expect(container.querySelector(".sgs-card--reversed")).toBeTruthy();
     expect(container.querySelector('[data-orientation="reversed"]')).toBeTruthy();
     expect(screen.queryByText(/正位|逆位|倒着/)).toBeNull();
+  });
+
+  it("逆位时报告客户端方向、DOM 方向和实际倒置类，供结果区复核", async () => {
+    const onRenderDiagnostic = vi.fn();
+    render(<OracleCard card={testCard} orientation="reversed" index={1} onRenderDiagnostic={onRenderDiagnostic} />);
+
+    await waitFor(() => expect(onRenderDiagnostic).toHaveBeenCalled());
+    expect(onRenderDiagnostic).toHaveBeenLastCalledWith(expect.objectContaining({
+      index: 1,
+      clientOrientation: "reversed",
+      dataOrientation: "reversed",
+      hasReversedClass: true,
+    }));
   });
 
   it("有本地素材映射时显示完整图片，逆位仍倒置整张卡", () => {
     const { container } = render(<OracleCard card={testCard} orientation="reversed" index={3} assetUrl="taluosha-asset://card/game-001" />);
 
     expect(screen.getByRole("img", { name: "五谷丰登 本地卡图" }).getAttribute("src")).toBe("taluosha-asset://card/game-001");
-    expect(container.querySelector(".sgs-card--image.oracle-card--reversed")).toBeTruthy();
+    expect(container.querySelector(".sgs-card--image.sgs-card--reversed")).toBeTruthy();
   });
 });
