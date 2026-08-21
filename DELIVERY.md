@@ -33,7 +33,7 @@ pnpm check
 pnpm test
 ```
 
-当前测试为 **5 个测试文件、13 条断言**，覆盖八卦规则、牌池实体数量、抽牌接口、文字/图片卡面正逆位、素材实体 ID 校验、路径越界拦截与缺失图片回退。另已通过本机规则模式的 SSE 接口验证，确认该模式返回“未调用任何大模型”的通知与完成事件。
+当前测试为 **5 个测试文件、14 条断言**，覆盖八卦规则、牌池实体数量、抽牌接口、文字/图片卡面正逆位、正逆方向分布、素材实体 ID 校验、路径越界拦截与缺失图片回退。另已通过本机规则模式的 SSE 接口验证，确认该模式返回“未调用任何大模型”的通知与完成事件。
 
 桌面版主进程脚本已通过语法检查，Electron 运行时与 electron-builder 已安装。`pnpm build` 在当前 Linux 沙箱的 Vite 渲染阶段两次因内存限制终止，因此未在此环境产出 Windows EXE；请在 Windows 10/11 x64 的本地项目文件夹中运行 `pnpm desktop:package` 生成并实测安装版与 portable EXE。若要直接在 Manus Desktop 上制作 EXE，请先绑定一个 Windows 本地项目文件夹。
 
@@ -43,7 +43,7 @@ pnpm test
 
 若后续接入用户合法取得的官方卡面，素材仅用于用户确认的**非营利、内部娱乐 EXE**，不公开发布或销售。
 
-用户可在 Windows EXE 的“**本地卡图 / ASSETS**”区选择自己的素材文件夹。文件夹需要 `manifest.json`，使用本应用的实体牌 ID（例如 `game-001`、`general-015`）映射 PNG/JPG/JPEG/WEBP 图片；完整格式见 [`assets-example/README.md`](./assets-example/README.md)。图片只在本机读取、不上传也不随应用分发。加载成功的逆位会将**整张卡图** 180° 倒置；未映射的牌会显示原有文字卡面。
+用户可在 Windows EXE 的“**本地卡图 / ASSETS**”区选择自己的素材文件夹。文件夹需要 `manifest.json`，使用本应用的实体牌 ID（例如 `game-001`、`general-015`）映射 PNG/JPG/JPEG/WEBP 图片；完整格式见 [`assets-example/README.md`](./assets-example/README.md)。图片只在本机读取、不上传也不随应用分发。逆位会将**整张卡图或文字回退卡** 180° 倒置，且卡面不另行显示“逆位”“倒着”等标签；未映射的牌会显示原有文字卡面。
 
 ## 参考
 

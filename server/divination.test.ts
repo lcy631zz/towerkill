@@ -34,6 +34,16 @@ describe("仪式洗牌", () => {
       createRitualSeed("同一问题", 1, 2, 3, "second"),
     );
   });
+
+  it("不同仪式种子会产生正位与逆位两种卡牌方向", () => {
+    const cards = ["曹操", "杀", "桃", "主公", "3/4 体力"];
+    const orientations = Array.from({ length: 24 }, (_, index) =>
+      drawThree(cards, createRitualSeed("方向抽取", 17, 23, 5, `ritual-${index}`)).map((item) => item.orientation),
+    ).flat();
+
+    expect(orientations).toContain("upright");
+    expect(orientations).toContain("reversed");
+  });
 });
 
 describe("经典标准牌池", () => {

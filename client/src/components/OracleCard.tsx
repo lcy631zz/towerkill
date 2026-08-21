@@ -12,7 +12,6 @@ export function OracleCard({ card, orientation, index, assetUrl }: Props) {
 
   if (assetUrl) return <article className={`sgs-card oracle-card sgs-card--image ${reversed ? "oracle-card--reversed" : ""}`} aria-label={`第 ${index} 张：${card.name}，${reversed ? "逆位倒着" : "正位正着"}`}>
     <img className="sgs-card__image" src={assetUrl} alt={`${card.name} 本地卡图`} />
-    <footer className={reversed ? "card-state card-state--reverse" : "card-state"}>{reversed ? "逆位 · 倒着" : "正位 · 正着"}</footer>
   </article>;
 
   return <article className={`sgs-card oracle-card ${reversed ? "oracle-card--reversed" : ""}`} aria-label={`第 ${index} 张：${card.name}，${reversed ? "逆位倒着" : "正位正着"}`}>
@@ -27,6 +26,5 @@ export function OracleCard({ card, orientation, index, assetUrl }: Props) {
       {card.story && <p><b>典故：</b>{card.story}</p>}
       <p className="sgs-card__symbol">{card.symbolism}</p>
     </div>
-    <footer className={reversed ? "card-state card-state--reverse" : "card-state"}>{reversed ? "逆位 · 倒着" : "正位 · 正着"}</footer>
   </article>;
 }

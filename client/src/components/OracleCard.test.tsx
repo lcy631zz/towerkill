@@ -17,7 +17,7 @@ const testCard = {
 };
 
 describe("OracleCard", () => {
-  it("清晰展示牌名、类型、花色点数、象征与正位状态", () => {
+  it("清晰展示正位牌名、类型、花色点数与象征", () => {
     render(<OracleCard card={testCard} orientation="upright" index={2} />);
 
     expect(screen.getByText("五谷丰登")).toBeTruthy();
@@ -25,14 +25,14 @@ describe("OracleCard", () => {
     expect(screen.getByText("#02")).toBeTruthy();
     expect(screen.getByText("游戏牌·锦囊", { exact: false })).toBeTruthy();
     expect(screen.getByText("资源显现、各取所需、分配")).toBeTruthy();
-    expect(screen.getByText("正位 · 正着")).toBeTruthy();
+    expect(screen.queryByText(/正位|逆位|倒着/)).toBeNull();
   });
 
-  it("逆位时旋转卡身并使用明确的倒着标识", () => {
+  it("逆位时仅旋转整张卡，不显示额外状态标签", () => {
     const { container } = render(<OracleCard card={testCard} orientation="reversed" index={1} />);
 
-    expect(screen.getByText("逆位 · 倒着")).toBeTruthy();
     expect(container.querySelector(".oracle-card--reversed")).toBeTruthy();
+    expect(screen.queryByText(/正位|逆位|倒着/)).toBeNull();
   });
 
   it("有本地素材映射时显示完整图片，逆位仍倒置整张卡", () => {
