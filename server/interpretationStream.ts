@@ -324,10 +324,10 @@ function cardElement(card: { name: string; kind: string; faction?: string | null
 const ELEMENT_GENERATES: Record<string, string> = { 木: "火", 火: "土", 土: "金", 金: "水", 水: "木" };
 const ELEMENT_CONQUERS: Record<string, string> = { 木: "土", 土: "水", 水: "火", 火: "金", 金: "木" };
 
-function hexagramCardEcho(plum: ReturnType<typeof buildDivinationResult>["plum"], cards: ReturnType<typeof buildDivinationResult>["cards"]): string {
+function hexagramCardEcho(plum: ReturnType<typeof buildDivinationResult>["plum"], cards: ReturnType<typeof buildDivinationResult>["cards"]): { line: string; tone: string } {
   const elements = cards.map(({ card }) => cardElement(card)).filter((e): e is string => e !== null);
   if (elements.length === 0) {
-    return `牌阵五行未显，以卦论势：${plum.relation.summary}`;
+    return { line: `牌阵五行未显，以卦论势：${plum.relation.summary}`, tone: "卦牌之势未明" };
   }
   const counts = new Map<string, number>();
   for (const e of elements) counts.set(e, (counts.get(e) ?? 0) + 1);
@@ -338,20 +338,30 @@ function hexagramCardEcho(plum: ReturnType<typeof buildDivinationResult>["plum"]
   const useElement = String(plum.use.element ?? "");
   const cardNames = cards.map(({ card }) => card.name).join("、");
   let cardTone: string;
+  let toneShort: string;
   if (dominant === useElement) {
     cardTone = `与用卦${useElement}气同频，内外合拍，卦势与牌势指向一致`;
+    toneShort = "内外合拍";
   } else if (ELEMENT_GENERATES[dominant] === useElement) {
     cardTone = `${dominant}气生用卦${useElement}，牌阵在给卦象添力，此势更足`;
+    toneShort = "牌阵为卦象添力，此势更足";
   } else if (ELEMENT_GENERATES[useElement] === dominant) {
     cardTone = `${dominant}气泄于用卦${useElement}，牌阵在为局面持续供血，留意消耗`;
+    toneShort = "牌阵在持续供血，留意消耗";
   } else if (ELEMENT_CONQUERS[dominant] === useElement) {
     cardTone = `${dominant}气压住用卦${useElement}，牌阵比外势更强，主动权在你`;
+    toneShort = "牌阵强于外势，主动权在你";
   } else if (ELEMENT_CONQUERS[useElement] === dominant) {
     cardTone = `用卦${useElement}反克牌阵${dominant}气，外势压牌，出招前先稳住阵脚`;
+    toneShort = "外势压牌，宜先稳阵脚";
   } else {
     cardTone = `与用卦${useElement}不相生克，卦牌各走一路，宜分清内外`;
+    toneShort = "卦牌各走一路，宜分清内外";
   }
-  return `三牌五行以**${dominant}**气最盛（${cardNames}），${cardTone}。卦理判词：${plum.relation.summary}`;
+  return {
+    line: `三牌五行以**${dominant}**气最盛（${cardNames}），${cardTone}。卦理判词：${plum.relation.summary}`,
+    tone: toneShort,
+  };
 }
 
 // 武将技能与牌面的已知联动：技能名 -> 呼应牌面与判词
@@ -479,12 +489,24 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   const imageryLines = cards.map(({ card, orientation }, index) => `${["开局", "阻力", "资源"][index] ?? "本"}位的**${card.name}**呈${cardImagery(card, orientation)}`);
   const reversedCount = cards.filter(({ orientation }) => orientation === "reversed").length;
   const mirror = MIRROR_BY_TOPIC[topic];
-  const nextStep = `就着「${cards[2].card.name}」递给你的筹码，${TOPIC_CLOSING[topic]}`;
+  const nextStep = TOPIC_CLOSING[topic];
   const closingLine = reversedCount >= 2
     ? `逆位过半（${reversedCount}/3），牌势偏于示警，步子宁可小一些、慢一些，别急着翻盘`
     : reversedCount === 1
       ? "一正一逆之间尚有余地，顺势推进即可，唯独那一处逆位要先理顺"
       : "三牌皆正，牌势顺遂，可以放心往前落子";
+
+  const imagerySymbols = cards.map(({ card, orientation }) => cardImagery(card, orientation).split("——")[0]);
+  const relationKind = String(plum.relation.kind ?? "");
+  const finalByRelation: Record<string, string> = {
+    比和: `内外节奏一致，可依本心推进，把「${cards[2].card.name}」之势用在刀刃上`,
+    用生体: `外力正在递力，顺势接住，再借「${cards[2].card.name}」加码`,
+    体生用: `你在向外耗力，先用「${cards[2].card.name}」稳住自身，再谈付出`,
+    用克体: `外压实实在在，先守后动，「${cards[2].card.name}」是眼下最该倚仗的`,
+    体克用: `局面在你掌中，按部就班，以「${cards[2].card.name}」开路`,
+  };
+  const finalAdvice = finalByRelation[relationKind] ?? `体用之势未明，稳守本心，以「${cards[2].card.name}」为先手`;
+  const resonanceLine = resonanceNotes.length > 0 ? `；更有牌阵呼应：${resonanceNotes.join("；")}` : "";
 
   return `### 塔罗 · 三牌叙事
 你的问题是「${result.question}」。${TOPIC_OPENING[topic]}，三张牌依次展开：
@@ -492,13 +514,13 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
 ${cardDescs.join("\n\n")}
 
 ### 梅花易数 · 卦象脉络
-本卦**${plum.primary.name}**，互卦**${plum.mutual.name}**，变卦**${plum.changed.name}**，第 ${plum.movingLine} 爻动。体卦${plum.body.name}（${plum.body.element}），用卦${plum.use.name}（${plum.use.element}）。${advice}。${cardEcho}
+本卦**${plum.primary.name}**，互卦**${plum.mutual.name}**，变卦**${plum.changed.name}**，第 ${plum.movingLine} 爻动。体卦${plum.body.name}（${plum.body.element}），用卦${plum.use.name}（${plum.use.element}）。${advice}。${cardEcho.line}
 
 ### 六壬意象旁注
 这不是传统完整大六壬排盘，而是以本次牌面与问事语境作的娱乐性象征联想。${TOPIC_OPENING[topic]}，三牌各呈其象：${imageryLines.join("；")}。${mirror}。
 
 ### 综合结论 · 可尝试的下一步
-${closingLine}。三张牌收拢成一句话：开局的「${cards[0].card.name}」${cardImagery(cards[0].card, cards[0].orientation)}；中途阻力在「${cards[1].card.name}」，${cardImagery(cards[1].card, cards[1].orientation)}；手中资源是「${cards[2].card.name}」，${cardImagery(cards[2].card, cards[2].orientation)}。${nextStep}。牌面只描摹态势，落子的始终是你。
+${closingLine}。把上面的解读合拢来看：叙事上开局「${cards[0].card.name}」呈${imagerySymbols[0]}，行至「${cards[1].card.name}」呈${imagerySymbols[1]}，所幸手中还有「${cards[2].card.name}」呈${imagerySymbols[2]}；卦象判**${relationKind || "未明"}**；牌气上，${cardEcho.tone}${resonanceLine}。由此观之：${finalAdvice}。${nextStep}。牌面只描摹态势，落子的始终是你。
 
 > ${disclaimer}`;
 }
