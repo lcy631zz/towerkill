@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import fsSync from "node:fs";
 import path from "node:path";
 
 const CARD_ID = /^(game|general|identity)-\d{3}$|^role-.+-\d+$|^health-\d+-\d+$/;
@@ -11,6 +12,72 @@ const ENGLISH_ALIAS_TO_IDS = {"Slash": ["game-001", "game-002", "game-003", "gam
 const PINYIN_TO_IDS = {"caocao": ["general-001"], "simayi": ["general-002"], "xiahoudun": ["general-003"], "zhangliao": ["general-004"], "xuchu": ["general-005"], "guojia": ["general-006"], "zhenji": ["general-007"], "liubei": ["general-008"], "guanyu": ["general-009"], "zhangfei": ["general-010"], "zhugeliang": ["general-011"], "zhaoyun": ["general-012"], "machao": ["general-013"], "huangyueying": ["general-014"], "sunquan": ["general-015"], "ganning": ["general-016"], "lvmeng": ["general-017"], "huanggai": ["general-018"], "zhouyu": ["general-019"], "daqiao": ["general-020"], "luxun": ["general-021"], "sunshangxiang": ["general-022"], "huatuo": ["general-023"], "lvbu": ["general-024"], "lubu": ["general-024"], "diaochan": ["general-025"], "zhuahuangfeidian": ["game-105"], "king": ["role-主公-1"], "liegeman": ["role-忠臣-1", "role-忠臣-2", "role-忠臣-3"], "enemy": ["role-反贼-1", "role-反贼-2", "role-反贼-3", "role-反贼-4"], "traitor": ["role-内奸-1", "role-内奸-2"]};
 
 const ENGLISH_TO_IDS = {"Attack": ["game-001", "game-002", "game-003", "game-004", "game-005", "game-006", "game-007", "game-008", "game-009", "game-010", "game-011", "game-012", "game-013", "game-014", "game-015", "game-016", "game-017", "game-018", "game-019", "game-020", "game-021", "game-022", "game-023", "game-024", "game-025", "game-026", "game-027", "game-028", "game-029", "game-030"], "Escape": ["game-031", "game-032", "game-033", "game-034", "game-035", "game-036", "game-037", "game-038", "game-039", "game-040", "game-041", "game-042", "game-043", "game-044", "game-045"], "Peach": ["game-046", "game-047", "game-048", "game-049", "game-050", "game-051", "game-052", "game-053"], "Duel": ["game-065", "game-066", "game-067"], "Capture": ["game-068", "game-069"], "Draw Two": ["game-070", "game-071", "game-072", "game-073"], "Negate": ["game-074", "game-075", "game-076", "game-077"], "Barbarians": ["game-078", "game-079", "game-080"], "Hail of Arrows": ["game-081"], "Peach Garden": ["game-082"], "Harvest": ["game-083", "game-084"], "Lightning": ["game-085", "game-086"], "Break": ["game-054", "game-055", "game-056", "game-057", "game-058", "game-059"], "Steal": ["game-060", "game-061", "game-062", "game-063", "game-064"], "Crossbow": ["game-090", "game-091"], "Ice Sword": ["game-093"], "Gender Swords": ["game-094"], "Green Dragon Blade": ["game-095"], "Serpent Spear": ["game-096"], "Axe": ["game-097"], "Sky Scorcher": ["game-098"], "Longbow": ["game-099"], "Eight Trigrams": ["game-100", "game-101"], "Black Shield": ["game-102"], "Di Lu": ["game-103"], "Shadow Runner": ["game-104"], "Hua Liu": ["game-105"], "Red Hare": ["game-106"], "Da Yuan": ["game-107"], "Zi Xing": ["game-108"], "Starvation": ["game-087", "game-088", "game-089"], "Ancient Scimitar": ["game-092"], "Cao Cao": ["general-001"], "Sima Yi": ["general-002"], "Xiahou Dun": ["general-003"], "Zhang Liao": ["general-004"], "Xu Chu": ["general-005"], "Guo Jia": ["general-006"], "Zhen Ji": ["general-007"], "Liu Bei": ["general-008"], "Guan Yu": ["general-009"], "Zhang Fei": ["general-010"], "Zhuge Liang": ["general-011"], "Zhao Yun": ["general-012"], "Ma Chao": ["general-013"], "Huang Yue Ying": ["general-014"], "Sun Quan": ["general-015"], "Gan Ning": ["general-016"], "Lu Meng": ["general-017"], "Huang Gai": ["general-018"], "Zhou Yu": ["general-019"], "Da Qiao": ["general-020"], "Lu Xun": ["general-021"], "Sun Shang Xiang": ["general-022"], "Hua Tuo": ["general-023"], "Lu Bu": ["general-024"], "Diao Chan": ["general-025"], "Hua Xiong": ["general-026"], "Yuan Shu": ["general-027"], "King": ["role-主公-1"], "Loyalist": ["role-忠臣-1", "role-忠臣-2", "role-忠臣-3"], "Rebel": ["role-反贼-1", "role-反贼-2", "role-反贼-3", "role-反贼-4"], "Spy": ["role-内奸-1", "role-内奸-2"]};
+
+// 轻量图片尺寸解析：同一张牌有多个候选图时，优先选分辨率最高的完整卡图
+function getPngSize(buf) {
+  if (buf.length >= 24 && buf.readUInt32BE(0) === 0x89504e47 && buf.readUInt32BE(12) === 0x49484452) {
+    return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+  }
+  return null;
+}
+
+function getJpegSize(buf) {
+  if (buf.length < 4 || buf[0] !== 0xff || buf[1] !== 0xd8) return null;
+  let offset = 2;
+  while (offset + 9 < buf.length) {
+    if (buf[offset] !== 0xff) break;
+    const marker = buf[offset + 1];
+    if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+      return { height: buf.readUInt16BE(offset + 5), width: buf.readUInt16BE(offset + 7) };
+    }
+    offset += 2 + buf.readUInt16BE(offset + 2);
+  }
+  return null;
+}
+
+function getGifSize(buf) {
+  if (buf.length >= 10 && buf.toString("ascii", 0, 3) === "GIF") {
+    return { width: buf.readUInt16LE(6), height: buf.readUInt16LE(8) };
+  }
+  return null;
+}
+
+function getBmpSize(buf) {
+  if (buf.length >= 26 && buf.toString("ascii", 0, 2) === "BM") {
+    return { width: buf.readInt32LE(18), height: Math.abs(buf.readInt32LE(22)) };
+  }
+  return null;
+}
+
+function getWebpSize(buf) {
+  if (buf.length >= 30 && buf.toString("ascii", 0, 4) === "RIFF" && buf.toString("ascii", 8, 12) === "WEBP") {
+    const fmt = buf.toString("ascii", 12, 16);
+    if (fmt === "VP8 ") return { width: buf.readUInt16LE(26) & 0x3fff, height: buf.readUInt16LE(28) & 0x3fff };
+    if (fmt === "VP8L" && buf[21] === 0x2f) {
+      const bits = buf.readUInt32LE(22);
+      return { width: (bits & 0x3fff) + 1, height: ((bits >> 14) & 0x3fff) + 1 };
+    }
+    if (fmt === "VP8X" && buf.length >= 30) {
+      return { width: (buf.readUIntLE(24, 3) & 0xffffff) + 1, height: (buf.readUIntLE(27, 3) & 0xffffff) + 1 };
+    }
+  }
+  return null;
+}
+
+function getImageArea(filePath) {
+  try {
+    const buf = fsSync.readFileSync(filePath);
+    const size = getPngSize(buf) || getJpegSize(buf) || getGifSize(buf) || getBmpSize(buf) || getWebpSize(buf);
+    return size ? size.width * size.height : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function pickBetterCandidate(existingPath, candidatePath) {
+  if (!existingPath) return candidatePath;
+  return getImageArea(candidatePath) > getImageArea(existingPath) ? candidatePath : existingPath;
+}
 
 function fail(message) {
   throw new Error(`素材包无效：${message}`);
@@ -107,9 +174,7 @@ export async function detectAssetPack(folderPath) {
 
     // 1. Direct ID match: game-001.png -> game-001
     if (CARD_ID.test(nameWithoutExt)) {
-      if (!idToPath.has(nameWithoutExt)) {
-        idToPath.set(nameWithoutExt, imagePath);
-      }
+      idToPath.set(nameWithoutExt, pickBetterCandidate(idToPath.get(nameWithoutExt), imagePath));
       continue;
     }
 
@@ -117,9 +182,7 @@ export async function detectAssetPack(folderPath) {
     const ids = findIdsByName(nameWithoutExt);
     if (ids.length > 0) {
       for (const id of ids) {
-        if (!idToPath.has(id)) {
-          idToPath.set(id, imagePath);
-        }
+        idToPath.set(id, pickBetterCandidate(idToPath.get(id), imagePath));
       }
       continue;
     }
@@ -127,9 +190,7 @@ export async function detectAssetPack(folderPath) {
     // 3. Try to extract ID from filename like game-001-extra.png
     const idInName = nameWithoutExt.match(/(?:game|general|identity)-\d{3}|role-.+-\d+|health-\d+-\d+/);
     if (idInName) {
-      if (!idToPath.has(idInName[0])) {
-        idToPath.set(idInName[0], imagePath);
-      }
+      idToPath.set(idInName[0], pickBetterCandidate(idToPath.get(idInName[0]), imagePath));
       continue;
     }
 
@@ -142,7 +203,10 @@ export async function detectAssetPack(folderPath) {
 
   const cards = {};
   const missing = [];
+  const MIN_CARD_AREA = 150 * 150; // 小图标不适合当整卡图，宁可回落内置牌面
   for (const [id, imagePath] of idToPath) {
+    const area = getImageArea(imagePath);
+    if (area > 0 && area < MIN_CARD_AREA) continue;
     cards[id] = imagePath;
   }
 
