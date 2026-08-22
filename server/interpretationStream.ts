@@ -424,7 +424,15 @@ function cardImagery(card: DrawnCard["card"], orientation: DrawnCard["orientatio
     }
   }
   if (card.kind === "general") return `人像——${card.symbolism}`;
-  if (card.kind === "health" || /^\d+\/\d+ 体力$/.test(card.name)) return `气象——先养元气，再谈进取`;
+  const healthMatch = card.name.match(/^(\d+)\/(\d+) 体力$/);
+  if (card.kind === "health" || healthMatch) {
+    if (!healthMatch) return `气象——先养元气，再谈进取`;
+    const current = Number(healthMatch[1]);
+    const max = Number(healthMatch[2]);
+    if (current <= 1) return `气象——元气仅余 ${current}/${max}，一丝悬命，风雨都扛不起，先保根本，万事从缓`;
+    if (max - current <= 1) return `气象——元气已至 ${current}/${max}，只差一步圆满，底子厚实，进取有据`;
+    return `气象——元气 ${current}/${max}，虽有小损但补得回来，不碍大局，稳中可谋`;
+  }
   if (/^(主公|忠臣|反贼|内奸)/.test(card.name)) return `位象——立场先定，再论攻守`;
   return `本象——${card.symbolism}`;
 }
@@ -471,7 +479,7 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   const imageryLines = cards.map(({ card, orientation }, index) => `${["开局", "阻力", "资源"][index] ?? "本"}位的**${card.name}**呈${cardImagery(card, orientation)}`);
   const reversedCount = cards.filter(({ orientation }) => orientation === "reversed").length;
   const mirror = MIRROR_BY_TOPIC[topic];
-  const nextStep = TOPIC_CLOSING[topic];
+  const nextStep = `就着「${cards[2].card.name}」递给你的筹码，${TOPIC_CLOSING[topic]}`;
   const closingLine = reversedCount >= 2
     ? `逆位过半（${reversedCount}/3），牌势偏于示警，步子宁可小一些、慢一些，别急着翻盘`
     : reversedCount === 1
