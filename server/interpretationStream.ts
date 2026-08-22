@@ -51,6 +51,7 @@ function buildPrompt(result: ReturnType<typeof buildDivinationResult>) {
       use: `${result.plum.use.name}（${result.plum.use.element}）`,
       relationship: result.plum.relation,
     },
+    resonance: findResonance(result.cards),
   }, null, 2);
 }
 
@@ -62,6 +63,7 @@ const systemPrompt = `你是“塔罗杀”的中文娱乐解读主持人。你�
 3. 只能依据输入 JSON 中明确给出的牌面事实、人物典故、象征关键词与卦象结构，不得捏造三国杀技能、历史事件或卦名。
 4. “六壬”部分必须命名为“六壬意象旁注”，并明确它是由本次数字、牌面与问事语境形成的娱乐性象征联想，不是传统完整大六壬排盘。
 5. 各体系要互相引用同一组牌和卦象，不能分别写成互不相关的段落。
+6. 必须解读 resonance 字段：同名牌重复出现说明其势被加倍强调；武将技能与阵中其他牌联动时（如咆哮配连杀、苦肉配桃），必须点破这层呼应。
 
 请使用以下 Markdown 结构，中文约 550–850 字：
 ### 塔罗 · 三牌叙事
@@ -352,6 +354,48 @@ function hexagramCardEcho(plum: ReturnType<typeof buildDivinationResult>["plum"]
   return `三牌五行以**${dominant}**气最盛（${cardNames}），${cardTone}。卦理判词：${plum.relation.summary}`;
 }
 
+// 武将技能与牌面的已知联动：技能名 -> 呼应牌面与判词
+const SKILL_CARD_SYNERGY: Array<{ skill: string; cards: RegExp; note: string }> = [
+  { skill: "咆哮", cards: /^杀$/, note: "咆哮无视出杀次数，杀势连环，攻势一旦铺开便不会断" },
+  { skill: "武圣", cards: /^杀$/, note: "武圣以牌化杀，杀意随取随用，处处皆是锋芒" },
+  { skill: "龙胆", cards: /^(杀|闪)$/, note: "龙胆令杀闪互换，攻守一念之间，进退皆有余地" },
+  { skill: "裸衣", cards: /^(杀|决斗)$/, note: "裸衣令杀与决斗之威更烈，正面相搏时杀伤倍增" },
+  { skill: "苦肉", cards: /^桃$/, note: "苦肉自损换先手，幸好桃在阵中，元气接得住" },
+  { skill: "急救", cards: /^桃$/, note: "急救可回天乏术处救人，桃牌在此正是雪中送炭" },
+  { skill: "无双", cards: /^(杀|决斗)$/, note: "无双之下杀需双闪、决斗需双杀，短兵相接时占尽上风" },
+  { skill: "铁骑", cards: /^杀$/, note: "铁骑令杀势难挡，主动出手时胜算更足" },
+  { skill: "奇袭", cards: /^(过河拆桥|顺手牵羊)$/, note: "奇袭以黑色牌行拆牵之事，敌营储备随时可动" },
+  { skill: "国色", cards: /^乐不思蜀$/, note: "国色以方片化乐不思蜀，困敌之锁比牌面所示更多" },
+];
+
+type DrawnCard = ReturnType<typeof buildDivinationResult>["cards"][number];
+
+function findResonance(cards: DrawnCard[]): { duplicates: string[]; synergies: string[] } {
+  const count = new Map<string, number>();
+  cards.forEach(({ card }) => count.set(card.name, (count.get(card.name) ?? 0) + 1));
+  const duplicates: string[] = [];
+  count.forEach((n, name) => {
+    if (n >= 2) {
+      duplicates.push(n >= 3
+        ? `**${name}**三度现身，意象层层叠加，此牌所主之势已成局，不可忽视`
+        : `**${name}**两度现身，重复的意象是强调，此牌所主之势在此局中格外吃重`);
+    }
+  });
+  const synergies: string[] = [];
+  cards.forEach(({ card }) => {
+    if (!card.skills) return;
+    String(card.skills).split("、").forEach((skillName) => {
+      const rule = SKILL_CARD_SYNERGY.find((r) => r.skill === skillName);
+      if (!rule) return;
+      const partner = cards.find((c) => c.card.name !== card.name && rule.cards.test(c.card.name));
+      if (partner) {
+        synergies.push(`**${card.name}**坐镇牌阵，技能「${skillName}」正与阵中**${partner.card.name}**呼应：${rule.note}`);
+      }
+    });
+  });
+  return { duplicates, synergies };
+}
+
 const MIRROR_BY_TOPIC: Record<QuestionTopic, string> = {
   感情: "情之一字，牌已替你摆出姿态，剩下的只是你敢不敢认",
   事业: "前程的事，牌把关键变量摆上了桌面，缺的只是你落子",
@@ -380,6 +424,11 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
     const stateText = orientation === "upright" ? "正位发力，顺势而为" : "逆位示警，需要先调整姿势";
     return `${positionName}落在**${card.name}**（${orientation === "upright" ? "正位" : "逆位"}）：${cardReading(card, topic)}。${stateText}。`;
   });
+  const resonance = findResonance(cards);
+  const resonanceNotes = [...resonance.duplicates, ...resonance.synergies];
+  if (resonanceNotes.length > 0) {
+    cardDescs.push(`牌阵呼应：${resonanceNotes.join("；")}。`);
+  }
 
   const plum = result.plum;
   const bodyElement = String(plum.body.element ?? "");
