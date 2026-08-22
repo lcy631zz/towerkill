@@ -71,9 +71,259 @@ const systemPrompt = `你是“塔罗杀”的中文娱乐解读主持人。你�
 
 “下一步”只提供低风险、可撤回、非决定性的行动建议。保持文学感、克制感与适量的三国意象。`;
 
+type QuestionTopic = "感情" | "事业" | "决策" | "时机" | "人际" | "财运" | "心绪";
+
+function detectTopic(question: string): QuestionTopic {
+  if (/感情|爱情|喜欢|恋爱|结婚|婚姻|复合|暗恋|对象|桃花|分手|表白/.test(question)) return "感情";
+  if (/工作|职业|事业|升职|跳槽|面试|项目|创业|生意|合作/.test(question)) return "事业";
+  if (/要不要|该不该|是否|选择|决定|取舍|二选|转|换/.test(question)) return "决策";
+  if (/时机|时候|什么时候|多久|等待|拖|缓|急|何时/.test(question)) return "时机";
+  if (/朋友|同事|同学|家人|父母|关系|人际|相处|矛盾|吵架/.test(question)) return "人际";
+  if (/钱|财|投资|理财|收益|股票|基金|工资|收入/.test(question)) return "财运";
+  return "心绪";
+}
+
+const TOPIC_OPENING: Record<QuestionTopic, string> = {
+  感情: "此问落在情字上",
+  事业: "此问落在功业前程",
+  决策: "此问正处在两难取舍之间",
+  时机: "此问关心的是时与势",
+  人际: "此问系于人与人之间的分寸",
+  财运: "此问落在财路上",
+  心绪: "此问更近于心绪与状态",
+};
+
+const CARD_THEMES: Array<[RegExp, Record<QuestionTopic, string>]> = [
+  [/^杀$|^决斗$/, {
+    感情: "像一场短兵相接，心意要直来直往，藏话只会误事",
+    事业: "主主动出击，此刻等不如做，但出手要有章法",
+    决策: "牌面催你落子，拖延本身就是一种选择",
+    时机: "锋刃已出鞘，时机偏早不偏晚，宜趁势而为",
+    人际: "言语间易带锋芒，留三分余地便是留退路",
+    财运: "利于主动争取，不宜被动等利",
+    心绪: "心中有股憋着的力量，找正当出口放掉它",
+  }],
+  [/^闪$/, {
+    感情: "一方在试探，另一方在回避，节奏没对上",
+    事业: "正面硬刚不划算，闪开锋芒再寻空档",
+    决策: "先别接招，看清对方底牌再回应",
+    时机: "此刻宜闪不宜攻，缓一步反而安全",
+    人际: "有人顾左右而言他，不必强求当面说破",
+    财运: "见好就收，躲开来路不明的机会",
+    心绪: "你在下意识回避什么，先承认它的存在",
+  }],
+  [/^桃$/, {
+    感情: "桃为生机，旧伤有回暖的余地",
+    事业: "有回血之象，濒危的事还能救一手",
+    决策: "选那条能保住元气的路，别逞强",
+    时机: "休整即是准备，养好了再出发不算迟",
+    人际: "有人愿意拉你一把，记得接住",
+    财运: "先补窟窿再谈进取",
+    心绪: "你需要的是休养，不是硬撑",
+  }],
+  [/过河拆桥/, {
+    感情: "旧纽带该拆就拆，留着只会互相牵制",
+    事业: "拆解旧结构，才能腾出手做新的",
+    决策: "斩断依赖项，选项自然清晰",
+    时机: "先清障，后行路",
+    人际: "有些关系靠得太近，拆一步反而清爽",
+    财运: "先拆旧账，再谈新利",
+    心绪: "把牵绊你的旧事一件件放下",
+  }],
+  [/顺手牵羊/, {
+    感情: "缘分有时是顺手的事，别把机会想得太郑重",
+    事业: "留意身边顺手的资源，借力不费力",
+    决策: "选那条能顺手带走资源的路",
+    时机: "机会是顺手出现的，盯太紧反而抓不住",
+    人际: "近水楼台，先处好眼前人",
+    财运: "小处得利，勿贪大",
+    心绪: "放轻松，该来的会顺路经过",
+  }],
+  [/借刀杀人/, {
+    感情: "假手他人传话，容易变了味",
+    事业: "善用外部力量，但别把自己摘得太干净",
+    决策: "借势不借责，责任终究是自己的",
+    时机: "等有外力可借时再动",
+    人际: "三角关系里最易生误会",
+    财运: "借力生财，须防中间人",
+    心绪: "别把情绪外包给别人处理",
+  }],
+  [/无中生有/, {
+    感情: "无中可生有，空白处正是落笔处",
+    事业: "从零创造的机会，比抢来的更干净",
+    决策: "现有选项都不满意，就造一个新选项",
+    时机: "时机不是等来的，是造出来的",
+    人际: "主动创造一次交集",
+    财运: "开源胜于节流",
+    心绪: "你缺的不是答案，是一个新念头",
+  }],
+  [/无懈可击/, {
+    感情: "防御太密，心意进不来",
+    事业: "守得稳，但别把防守当战略",
+    决策: "你已有破解之法，信它",
+    时机: "此刻以守代攻",
+    人际: "卸下部分防备，关系才有缝隙",
+    财运: "守财为上，拒掉可疑的门路",
+    心绪: "安全感给足了，才敢往前走",
+  }],
+  [/南蛮入侵/, {
+    感情: "外部压力闯进来，两人要一致对外",
+    事业: "一波冲击人人有份，别单扛",
+    决策: "大环境在变，顺势调整胜于固守",
+    时机: "风浪将至，先稳住基本盘",
+    人际: "群体压力面前，守住自己的节奏",
+    财运: "系统性风险，收手观望",
+    心绪: "外界的嘈杂不必全接",
+  }],
+  [/万箭齐发/, {
+    感情: "明枪易躲，先把话说在明处",
+    事业: "多点受压，先保要害再顾其余",
+    决策: "风险齐发之际，选防御最强的那条路",
+    时机: "风头正劲，避一避",
+    人际: "众口铄金，少辩多听",
+    财运: "全线收紧",
+    心绪: "四面来风时，先护住心",
+  }],
+  [/桃园结义/, {
+    感情: "桃园之象，主同心与回暖",
+    事业: "合伙共事，彼此补位",
+    决策: "选那条能聚人的路",
+    时机: "人和已备，可以起事",
+    人际: "旧谊可续，新盟可结",
+    财运: "合则两利",
+    心绪: "找回你的同路人",
+  }],
+  [/五谷丰登/, {
+    感情: "选项不少，挑最合心意的那颗",
+    事业: "收获期，按次序把成果收入囊中",
+    决策: "牌面摊开给你看，先到先得，别谦让",
+    时机: "正是收成的时候",
+    人际: "共享利益，关系更牢",
+    财运: "明牌之利，取之有道",
+    心绪: "先盘点你已拥有的",
+  }],
+  [/闪电/, {
+    感情: "变数悬在头顶，但未必劈下来",
+    事业: "有惊雷之象，预案先备好",
+    决策: "别让侥幸当参谋",
+    时机: "天有不测，节奏留余量",
+    人际: "情绪雷区，绕着走",
+    财运: "高波动，轻仓",
+    心绪: "焦虑多来自想象里的雷声",
+  }],
+  [/乐不思蜀/, {
+    感情: "一方乐不思归，另一方在等",
+    事业: "停滞之象，事情被搁住了",
+    决策: "你被什么困住了，先看清它",
+    时机: "暂时动弹不得，莫硬闯",
+    人际: "有人在回避推进",
+    财运: "资金被套，暂难周转",
+    心绪: "舒适区困住的，是你自己",
+  }],
+  [/诸葛连弩/, {
+    感情: "连续表达的机会来了，别只说半句",
+    事业: "连发之势，一鼓作气",
+    决策: "动作要连贯，半截而废最可惜",
+    时机: "窗口期允许你连续出手",
+    人际: "多沟通几次，一次说不透",
+    财运: "积小胜为大胜",
+    心绪: "憋了很久的话，一次说完",
+  }],
+  [/^(青釭剑|青龙偃月刀|寒冰剑|雌雄双股剑|丈八蛇矛|贯石斧|方天画戟|麒麟弓)$/, {
+    感情: "兵刃在手，长处在锋利，也别忘了距离感",
+    事业: "工具已备，射程之内皆可为",
+    决策: "用好你手里最强的那张牌",
+    时机: "器已利，只欠出手",
+    人际: "有锋芒是好事，收放由人才是本事",
+    财运: "利器善用，收益看距离",
+    心绪: "你的优势，比你想的射程更远",
+  }],
+  [/^(八卦阵|仁王盾)$/, {
+    感情: "护具在身，但别让盾挡掉了真心",
+    事业: "有屏障可依，稳中求进",
+    决策: "选防御更足的一条",
+    时机: "有惊无险",
+    人际: "边界感清晰，是好事",
+    财运: "有护盘之力",
+    心绪: "安全感已经具备",
+  }],
+  [/^(赤兔|的卢|绝影|爪黄飞电|大宛|紫骍)$/, {
+    感情: "良马主速度与距离，拉近或走远，看你想要哪个",
+    事业: "机动性增强，能跑在别人前面",
+    决策: "快一步能抢到主动权",
+    时机: "行动半径变大，时机随之变多",
+    人际: "距离可调，进退有据",
+    财运: "流通生财",
+    心绪: "你比想象中更能走远",
+  }],
+];
+
+const FACTION_READING: Record<string, string> = {
+  魏: "魏势主冷静筹谋，先算后战",
+  蜀: "蜀势主信义执着，认准了便走到底",
+  吴: "吴势主灵活应变，顺势而转",
+  群: "群势主独立不羁，不随大流",
+};
+
+function cardReading(card: { name: string; kind: string; effect?: string | null; skills?: string | null; story?: string | null; symbolism: string; faction?: string | null; hp?: number | null }, topic: QuestionTopic): string {
+  for (const [pattern, readings] of CARD_THEMES) {
+    if (pattern.test(card.name)) return readings[topic];
+  }
+  if (card.faction && FACTION_READING[card.faction]) {
+    return `${FACTION_READING[card.faction]}；其人关键词在“${card.symbolism}”`;
+  }
+  if (card.kind === "health" || /^\d+\/\d+ 体力$/.test(card.name)) {
+    return `体力之牌，讲的是元气与余量：${card.symbolism}`;
+  }
+  if (/^(主公|忠臣|反贼|内奸)/.test(card.name)) {
+    return `身份之牌，提示立场与角色：先想清楚自己在此局中是谁`;
+  }
+  return `此牌关键词在“${card.symbolism}”`;
+}
+
+const ELEMENT_WEAK_TO_STRONG: Record<string, string> = { 木: "火", 火: "土", 土: "金", 金: "水", 水: "木" };
+const ELEMENT_STRONG_TO_WEAK: Record<string, string> = { 木: "土", 土: "水", 水: "火", 火: "金", 金: "木" };
+
+function relationAdvice(bodyElement: string, useElement: string): string {
+  const elements = ["木", "火", "土", "金", "水"];
+  if (!elements.includes(bodyElement) || !elements.includes(useElement)) {
+    return "体用之势未明，宜稳守本心，静观其变";
+  }
+  if (bodyElement === useElement) return "体用比和，内外一致，按本心推进即可，不必多疑";
+  if (ELEMENT_WEAK_TO_STRONG[useElement] === bodyElement) return "用生体，外部环境在给你递力，宜顺势接住，不必客气";
+  if (ELEMENT_WEAK_TO_STRONG[bodyElement] === useElement) return "体生用，你在向外输送精力，先掂量这份付出是否值得";
+  if (ELEMENT_STRONG_TO_WEAK[useElement] === bodyElement) return "用克体，外来压力实实在在，先稳住自己再谈其他";
+  return "体克用，局面在你掌控之中，但仍需按部就班，不可浪掷优势";
+}
+
 function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
-  const cardNames = result.cards.map(({ card }) => card.name).join("、");
-  return `### 塔罗 · 三牌叙事\n本次牌面依次落在**${cardNames}**。它们像一段从处境、阻力到可用资源的叙事：先承认眼前的张力，再寻找可以重新调度的空间。正逆位提示的不是吉凶定论，而是同一力量在“顺势发挥”与“需要调整”之间的不同状态。\n\n### 梅花易数 · 卦象脉络\n本卦为**${result.plum.primary.name}**，互卦为**${result.plum.mutual.name}**，变卦为**${result.plum.changed.name}**；第 ${result.plum.movingLine} 爻动。体为${result.plum.body.name}，用为${result.plum.use.name}，呈现“${result.plum.relation.kind}”之象：${result.plum.relation.summary}\n\n### 六壬意象旁注\n这不是传统完整大六壬排盘，而是以本次数字、牌面和问事语境作的娱乐性象征联想：不必急于把所有线索一次看透，先把最能影响局面的一个动作放在可掌控的尺度里。\n\n### 综合结论 · 可尝试的下一步\n将问题拆成一个能在一两天内验证的小步骤：补一条信息、写下两个选项，或与可信的人做一次具体沟通。让行动给你新的证据，而不是把一次抽牌当作结论。\n\n> ${disclaimer}`;
+  const topic = detectTopic(result.question);
+  const cardDescs = result.cards.map(({ card, orientation }, index) => {
+    const positionName = ["开局处境", "中途阻力", "手中资源"][index] ?? `第 ${index + 1} 位`;
+    const stateText = orientation === "upright" ? "正位发力，顺势而为" : "逆位示警，需要先调整姿势";
+    return `${positionName}落在**${card.name}**（${orientation === "upright" ? "正位" : "逆位"}）：${cardReading(card, topic)}。${stateText}。`;
+  });
+
+  const plum = result.plum;
+  const bodyElement = String(plum.body.element ?? "");
+  const useElement = String(plum.use.element ?? "");
+  const advice = relationAdvice(bodyElement, useElement);
+
+  return `### 塔罗 · 三牌叙事
+你的问题是「${result.question}」。${TOPIC_OPENING[topic]}，三张牌依次展开：
+
+${cardDescs.join("\n\n")}
+
+### 梅花易数 · 卦象脉络
+本卦**${plum.primary.name}**，互卦**${plum.mutual.name}**，变卦**${plum.changed.name}**，第 ${plum.movingLine} 爻动。体卦${plum.body.name}（${plum.body.element}），用卦${plum.use.name}（${plum.use.element}）。${advice}。
+
+### 六壬意象旁注
+这不是传统完整大六壬排盘，而是以本次数字、牌面与问事语境作的娱乐性象征联想：${TOPIC_OPENING[topic]}，而牌阵给出的意象是“${result.cards.map(({ card }) => card.name).join("、")}”的连缀——把它当作一面镜子，照的是你已知道却还没说出口的判断。
+
+### 综合结论 · 可尝试的下一步
+把问题收拢成一个一两天内可验证的小动作：补一条关键信息、写下两个候选方案、或与可信的人做一次具体沟通。牌面只描摹态势，落子的始终是你。
+
+> ${disclaimer}`;
 }
 
 function toCompletionUrl(baseUrl: string) {
