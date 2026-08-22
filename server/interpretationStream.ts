@@ -296,9 +296,86 @@ function relationAdvice(bodyElement: string, useElement: string): string {
   return "体克用，局面在你掌控之中，但仍需按部就班，不可浪掷优势";
 }
 
+const CARD_ELEMENT_RULES: Array<[RegExp, string]> = [
+  [/^(杀|决斗|借刀杀人|南蛮入侵|万箭齐发)$/, "金"],
+  [/^(青釭剑|青龙偃月刀|寒冰剑|雌雄双股剑|丈八蛇矛|贯石斧|方天画戟|麒麟弓|诸葛连弩)$/, "金"],
+  [/^(闪|无懈可击|八卦阵|仁王盾)$/, "水"],
+  [/^(桃|桃园结义)$/, "木"],
+  [/^(无中生有|五谷丰登)$/, "火"],
+  [/^(过河拆桥|顺手牵羊|乐不思蜀|闪电)$/, "土"],
+  [/^(赤兔|的卢|绝影|爪黄飞电|大宛|紫骍)$/, "水"],
+];
+
+const FACTION_ELEMENT: Record<string, string> = { 魏: "水", 蜀: "火", 吴: "木", 群: "土" };
+const IDENTITY_ELEMENT: Record<string, string> = { 主公: "土", 忠臣: "火", 反贼: "金", 内奸: "水" };
+
+function cardElement(card: { name: string; kind: string; faction?: string | null }): string | null {
+  for (const [pattern, element] of CARD_ELEMENT_RULES) {
+    if (pattern.test(card.name)) return element;
+  }
+  if (card.kind === "general") return card.faction ? FACTION_ELEMENT[card.faction] ?? null : null;
+  const identity = Object.keys(IDENTITY_ELEMENT).find((key) => card.name.startsWith(key));
+  if (identity) return IDENTITY_ELEMENT[identity];
+  return null;
+}
+
+const ELEMENT_GENERATES: Record<string, string> = { 木: "火", 火: "土", 土: "金", 金: "水", 水: "木" };
+const ELEMENT_CONQUERS: Record<string, string> = { 木: "土", 土: "水", 水: "火", 火: "金", 金: "木" };
+
+function hexagramCardEcho(plum: ReturnType<typeof buildDivinationResult>["plum"], cards: ReturnType<typeof buildDivinationResult>["cards"]): string {
+  const elements = cards.map(({ card }) => cardElement(card)).filter((e): e is string => e !== null);
+  if (elements.length === 0) {
+    return `牌阵五行未显，以卦论势：${plum.relation.summary}`;
+  }
+  const counts = new Map<string, number>();
+  for (const e of elements) counts.set(e, (counts.get(e) ?? 0) + 1);
+  let dominant = elements[0];
+  counts.forEach((count, element) => {
+    if (count > (counts.get(dominant) ?? 0)) dominant = element;
+  });
+  const useElement = String(plum.use.element ?? "");
+  const cardNames = cards.map(({ card }) => card.name).join("、");
+  let cardTone: string;
+  if (dominant === useElement) {
+    cardTone = `与用卦${useElement}气同频，内外合拍，卦势与牌势指向一致`;
+  } else if (ELEMENT_GENERATES[dominant] === useElement) {
+    cardTone = `${dominant}气生用卦${useElement}，牌阵在给卦象添力，此势更足`;
+  } else if (ELEMENT_GENERATES[useElement] === dominant) {
+    cardTone = `${dominant}气泄于用卦${useElement}，牌阵在为局面持续供血，留意消耗`;
+  } else if (ELEMENT_CONQUERS[dominant] === useElement) {
+    cardTone = `${dominant}气压住用卦${useElement}，牌阵比外势更强，主动权在你`;
+  } else if (ELEMENT_CONQUERS[useElement] === dominant) {
+    cardTone = `用卦${useElement}反克牌阵${dominant}气，外势压牌，出招前先稳住阵脚`;
+  } else {
+    cardTone = `与用卦${useElement}不相生克，卦牌各走一路，宜分清内外`;
+  }
+  return `三牌五行以**${dominant}**气最盛（${cardNames}），${cardTone}。卦理判词：${plum.relation.summary}`;
+}
+
+const MIRROR_BY_TOPIC: Record<QuestionTopic, string> = {
+  感情: "情之一字，牌已替你摆出姿态，剩下的只是你敢不敢认",
+  事业: "前程的事，牌把关键变量摆上了桌面，缺的只是你落子",
+  决策: "两难之所以两难，是因为你心里其实已有答案，牌只是把它照亮",
+  时机: "时与势牌上写得明白，难的从来不是等，是忍住不动",
+  人际: "人与人的分寸，牌阵照出的那一点，多半就是你避而不谈的那一点",
+  财运: "财路上的取舍，牌已给出轮廓，剩下的只是敢不敢按它执行",
+  心绪: "心绪之问，牌不解答，只把你自己已经知道的事摆回你面前",
+};
+
+const TOPIC_CLOSING: Record<QuestionTopic, string> = {
+  感情: "把你想说的那句话，找一个具体的时机说出来，或认真想一想要不要说",
+  事业: "把最关心的那个结果，拆成一件本周就能完成的小事，先做它",
+  决策: "把两个选项各写三行利弊，写完通常就看出倾向了",
+  时机: "给自己设一个具体的观察节点，到点再评估，中途不反复",
+  人际: "找一个具体的人，做一次具体的沟通，别在想象里排练",
+  财运: "先把账目或预算理一遍，数字清楚了，胆量才有依据",
+  心绪: "先睡好两晚觉，再回头看这个问题，答案的清晰度会不一样",
+};
+
 function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   const topic = detectTopic(result.question);
-  const cardDescs = result.cards.map(({ card, orientation }, index) => {
+  const cards = result.cards;
+  const cardDescs = cards.map(({ card, orientation }, index) => {
     const positionName = ["开局处境", "中途阻力", "手中资源"][index] ?? `第 ${index + 1} 位`;
     const stateText = orientation === "upright" ? "正位发力，顺势而为" : "逆位示警，需要先调整姿势";
     return `${positionName}落在**${card.name}**（${orientation === "upright" ? "正位" : "逆位"}）：${cardReading(card, topic)}。${stateText}。`;
@@ -308,6 +385,16 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   const bodyElement = String(plum.body.element ?? "");
   const useElement = String(plum.use.element ?? "");
   const advice = relationAdvice(bodyElement, useElement);
+  const cardEcho = hexagramCardEcho(plum, cards);
+  const cardChain = cards.map(({ card, orientation }) => `${card.name}·${orientation === "upright" ? "正" : "逆"}`).join("，");
+  const reversedCount = cards.filter(({ orientation }) => orientation === "reversed").length;
+  const mirror = MIRROR_BY_TOPIC[topic];
+  const nextStep = TOPIC_CLOSING[topic];
+  const closingLine = reversedCount >= 2
+    ? `逆位过半（${reversedCount}/3），牌势偏于示警，步子宁可小一些、慢一些，别急着翻盘`
+    : reversedCount === 1
+      ? "一正一逆之间尚有余地，顺势推进即可，唯独那一处逆位要先理顺"
+      : "三牌皆正，牌势顺遂，可以放心往前落子";
 
   return `### 塔罗 · 三牌叙事
 你的问题是「${result.question}」。${TOPIC_OPENING[topic]}，三张牌依次展开：
@@ -315,13 +402,13 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
 ${cardDescs.join("\n\n")}
 
 ### 梅花易数 · 卦象脉络
-本卦**${plum.primary.name}**，互卦**${plum.mutual.name}**，变卦**${plum.changed.name}**，第 ${plum.movingLine} 爻动。体卦${plum.body.name}（${plum.body.element}），用卦${plum.use.name}（${plum.use.element}）。${advice}。
+本卦**${plum.primary.name}**，互卦**${plum.mutual.name}**，变卦**${plum.changed.name}**，第 ${plum.movingLine} 爻动。体卦${plum.body.name}（${plum.body.element}），用卦${plum.use.name}（${plum.use.element}）。${advice}。${cardEcho}
 
 ### 六壬意象旁注
-这不是传统完整大六壬排盘，而是以本次数字、牌面与问事语境作的娱乐性象征联想：${TOPIC_OPENING[topic]}，而牌阵给出的意象是“${result.cards.map(({ card }) => card.name).join("、")}”的连缀——把它当作一面镜子，照的是你已知道却还没说出口的判断。
+这不是传统完整大六壬排盘，而是以本次数字、牌面与问事语境作的娱乐性象征联想：${TOPIC_OPENING[topic]}，本次牌阵意象为「${cardChain}」——${mirror}。
 
 ### 综合结论 · 可尝试的下一步
-把问题收拢成一个一两天内可验证的小动作：补一条关键信息、写下两个候选方案、或与可信的人做一次具体沟通。牌面只描摹态势，落子的始终是你。
+${closingLine}。${nextStep}。牌面只描摹态势，落子的始终是你。
 
 > ${disclaimer}`;
 }
