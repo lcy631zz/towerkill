@@ -396,6 +396,39 @@ function findResonance(cards: DrawnCard[]): { duplicates: string[]; synergies: s
   return { duplicates, synergies };
 }
 
+// 每张牌的象：正逆两套判词，供六壬旁注与综合结论引用
+const CARD_IMAGERY: Array<[RegExp, { symbol: string; upright: string; reversed: string }]> = [
+  [/^杀$|^决斗$/, { symbol: "刃象", upright: "正面突破的势头可用", reversed: "锋芒宜先收一收" }],
+  [/^闪$/, { symbol: "避象", upright: "闪开锋芒，另寻空档", reversed: "回避太久，会错过出手的时机" }],
+  [/^桃$/, { symbol: "生象", upright: "生机尚在，元气可补", reversed: "休养不足，先别硬撑" }],
+  [/过河拆桥/, { symbol: "拆象", upright: "旧的不去，新的不来", reversed: "牵绊未断，拆不动就先认下它" }],
+  [/顺手牵羊/, { symbol: "取象", upright: "近处有顺手的机会", reversed: "贪近利，反失大体" }],
+  [/借刀杀人/, { symbol: "借象", upright: "有外力可借", reversed: "借力不成反受制" }],
+  [/无中生有/, { symbol: "创象", upright: "空白处正是落笔处", reversed: "底子未备，别急着造势" }],
+  [/无懈可击/, { symbol: "守象", upright: "防线严密，守得住", reversed: "守得过头，机会也挡在了门外" }],
+  [/南蛮入侵|万箭齐发/, { symbol: "压象", upright: "风浪齐至，先稳基本盘", reversed: "压力渐退，可缓一口气" }],
+  [/桃园结义/, { symbol: "和象", upright: "人和回暖，同心可用", reversed: "同路人暂时聚不齐" }],
+  [/五谷丰登/, { symbol: "收象", upright: "收成在望，按序取利", reversed: "果实未熟，别抢收" }],
+  [/闪电/, { symbol: "惊象", upright: "变数悬顶，预案先行", reversed: "雷声渐远，虚惊居多" }],
+  [/乐不思蜀/, { symbol: "困象", upright: "局面被搁住，先看清困住你的是什么", reversed: "困局将解，勿再恋战" }],
+  [/诸葛连弩/, { symbol: "连象", upright: "一鼓作气，连招奏效", reversed: "势不能续，宜单发不宜连攻" }],
+  [/^(青釭剑|青龙偃月刀|寒冰剑|雌雄双股剑|丈八蛇矛|贯石斧|方天画戟|麒麟弓)$/, { symbol: "器象", upright: "利器在手，长处在射程", reversed: "器虽利，出手的时机未到" }],
+  [/^(八卦阵|仁王盾)$/, { symbol: "甲象", upright: "屏障可依，稳中求进", reversed: "护具有隙，别全押在防守上" }],
+  [/^(赤兔|的卢|绝影|爪黄飞电|大宛|紫骍)$/, { symbol: "行象", upright: "进退自如，距离可控", reversed: "脚程被绊，先稳阵脚" }],
+];
+
+function cardImagery(card: DrawnCard["card"], orientation: DrawnCard["orientation"]): string {
+  for (const [pattern, img] of CARD_IMAGERY) {
+    if (pattern.test(card.name)) {
+      return `${img.symbol}——${orientation === "upright" ? img.upright : img.reversed}`;
+    }
+  }
+  if (card.kind === "general") return `人像——${card.symbolism}`;
+  if (card.kind === "health" || /^\d+\/\d+ 体力$/.test(card.name)) return `气象——先养元气，再谈进取`;
+  if (/^(主公|忠臣|反贼|内奸)/.test(card.name)) return `位象——立场先定，再论攻守`;
+  return `本象——${card.symbolism}`;
+}
+
 const MIRROR_BY_TOPIC: Record<QuestionTopic, string> = {
   感情: "情之一字，牌已替你摆出姿态，剩下的只是你敢不敢认",
   事业: "前程的事，牌把关键变量摆上了桌面，缺的只是你落子",
@@ -435,7 +468,7 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   const useElement = String(plum.use.element ?? "");
   const advice = relationAdvice(bodyElement, useElement);
   const cardEcho = hexagramCardEcho(plum, cards);
-  const cardChain = cards.map(({ card, orientation }) => `${card.name}·${orientation === "upright" ? "正" : "逆"}`).join("，");
+  const imageryLines = cards.map(({ card, orientation }, index) => `${["开局", "阻力", "资源"][index] ?? "本"}位的**${card.name}**呈${cardImagery(card, orientation)}`);
   const reversedCount = cards.filter(({ orientation }) => orientation === "reversed").length;
   const mirror = MIRROR_BY_TOPIC[topic];
   const nextStep = TOPIC_CLOSING[topic];
@@ -454,10 +487,10 @@ ${cardDescs.join("\n\n")}
 本卦**${plum.primary.name}**，互卦**${plum.mutual.name}**，变卦**${plum.changed.name}**，第 ${plum.movingLine} 爻动。体卦${plum.body.name}（${plum.body.element}），用卦${plum.use.name}（${plum.use.element}）。${advice}。${cardEcho}
 
 ### 六壬意象旁注
-这不是传统完整大六壬排盘，而是以本次数字、牌面与问事语境作的娱乐性象征联想：${TOPIC_OPENING[topic]}，本次牌阵意象为「${cardChain}」——${mirror}。
+这不是传统完整大六壬排盘，而是以本次牌面与问事语境作的娱乐性象征联想。${TOPIC_OPENING[topic]}，三牌各呈其象：${imageryLines.join("；")}。${mirror}。
 
 ### 综合结论 · 可尝试的下一步
-${closingLine}。${nextStep}。牌面只描摹态势，落子的始终是你。
+${closingLine}。三张牌收拢成一句话：开局的「${cards[0].card.name}」${cardImagery(cards[0].card, cards[0].orientation)}；中途阻力在「${cards[1].card.name}」，${cardImagery(cards[1].card, cards[1].orientation)}；手中资源是「${cards[2].card.name}」，${cardImagery(cards[2].card, cards[2].orientation)}。${nextStep}。牌面只描摹态势，落子的始终是你。
 
 > ${disclaimer}`;
 }
