@@ -457,15 +457,42 @@ const MIRROR_BY_TOPIC: Record<QuestionTopic, string> = {
   心绪: "心绪之问，牌不解答，只把你自己已经知道的事摆回你面前",
 };
 
-const TOPIC_CLOSING: Record<QuestionTopic, string> = {
-  感情: "把你想说的那句话，找一个具体的时机说出来，或认真想一想要不要说",
-  事业: "把最关心的那个结果，拆成一件本周就能完成的小事，先做它",
-  决策: "把两个选项各写三行利弊，写完通常就看出倾向了",
-  时机: "给自己设一个具体的观察节点，到点再评估，中途不反复",
-  人际: "找一个具体的人，做一次具体的沟通，别在想象里排练",
-  财运: "先把账目或预算理一遍，数字清楚了，胆量才有依据",
-  心绪: "先睡好两晚觉，再回头看这个问题，答案的清晰度会不一样",
+// 下一步建议由资源位牌的象推导，不再只认问事类别
+const NEXT_STEP_BY_SYMBOL: Record<string, string> = {
+  刃象: "挑一件你一直在回避的正面交锋，把它了结",
+  避象: "先停一步，把局势的底看清再回应",
+  生象: "先修复最损耗你的那一环，再谈进取",
+  拆象: "列出还放不下的旧牵绊，挑一件先放下",
+  取象: "从最近最顺手的小事做起，先积一胜",
+  借象: "想想谁手里有你缺的资源，去开这个口",
+  创象: "没有现成选项就自己造一个，先落个草案",
+  守象: "检查你的防线，看有没有哪扇门把机会也挡在了外面",
+  压象: "把最坏的情况写下来，配一条预案，心就定了",
+  和象: "找那位能与你同心的人，把话摊开说",
+  收象: "盘点你已到手的东西，按顺序收好",
+  惊象: "给悬着的那件事写个预案，雷就不怕了",
+  困象: "写下「到底是什么在困住我」，答案落纸即松动",
+  连象: "把要说的话一次说完、要做的事一次做完，别拆成三截",
+  器象: "把你的最强项，用在射程之内的那件事上",
+  甲象: "确认你的边界：什么能碰，什么不能",
+  行象: "调整一下距离——走近一步，或退开一步",
 };
+
+function nextStepFor(card: DrawnCard["card"]): string {
+  const symbol = cardImagery(card, "upright").split("——")[0];
+  const step = NEXT_STEP_BY_SYMBOL[symbol];
+  if (step) return step;
+  if (symbol === "人像") return `想一想「${card.name}」会怎么做，借他一招`;
+  if (symbol === "气象") return "先睡好觉、养足元气，别的事缓一步再说";
+  if (symbol === "位象") return "先弄清自己在此局中的立场，再决定往哪边落子";
+  return `围绕「${card.name}」给你的提示，落一件具体的小事`;
+}
+
+const SIGNATURES = [
+  "牌面只描摹态势，落子的始终是你",
+  "牌只是镜子，照出的路还得你自己走",
+  "势在牌上，局在你手里",
+];
 
 function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   const topic = detectTopic(result.question);
@@ -489,7 +516,8 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   const imageryLines = cards.map(({ card, orientation }, index) => `${["开局", "阻力", "资源"][index] ?? "本"}位的**${card.name}**呈${cardImagery(card, orientation)}`);
   const reversedCount = cards.filter(({ orientation }) => orientation === "reversed").length;
   const mirror = MIRROR_BY_TOPIC[topic];
-  const nextStep = TOPIC_CLOSING[topic];
+  const nextStep = nextStepFor(cards[2].card);
+  const signature = SIGNATURES[reversedCount % SIGNATURES.length];
   const closingLine = reversedCount >= 2
     ? `逆位过半（${reversedCount}/3），牌势偏于示警，步子宁可小一些、慢一些，别急着翻盘`
     : reversedCount === 1
@@ -520,7 +548,7 @@ ${cardDescs.join("\n\n")}
 这不是传统完整大六壬排盘，而是以本次牌面与问事语境作的娱乐性象征联想。${TOPIC_OPENING[topic]}，三牌各呈其象：${imageryLines.join("；")}。${mirror}。
 
 ### 综合结论 · 可尝试的下一步
-${closingLine}。把上面的解读合拢来看：叙事上开局「${cards[0].card.name}」呈${imagerySymbols[0]}，行至「${cards[1].card.name}」呈${imagerySymbols[1]}，所幸手中还有「${cards[2].card.name}」呈${imagerySymbols[2]}；卦象判**${relationKind || "未明"}**；牌气上，${cardEcho.tone}${resonanceLine}。由此观之：${finalAdvice}。${nextStep}。牌面只描摹态势，落子的始终是你。
+${closingLine}。把上面的解读合拢来看：叙事上开局「${cards[0].card.name}」呈${imagerySymbols[0]}，行至「${cards[1].card.name}」呈${imagerySymbols[1]}，所幸手中还有「${cards[2].card.name}」呈${imagerySymbols[2]}；卦象判**${relationKind || "未明"}**；牌气上，${cardEcho.tone}${resonanceLine}。由此观之：${finalAdvice}。${nextStep}。${signature}。
 
 > ${disclaimer}`;
 }
