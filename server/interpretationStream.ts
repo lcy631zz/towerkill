@@ -677,6 +677,9 @@ export function registerInterpretationStream(app: Express) {
 
     const result = buildDivinationResult(parsed.data, parsed.data.ritualNonce);
     let finished = false;
+    // 本地模型首字动辄数分钟，期间若无任何播报，用户会误以为程序卡死
+    let heartbeat: ReturnType<typeof setInterval> | null = null;
+    const stopHeartbeat = () => { if (heartbeat) { clearInterval(heartbeat); heartbeat = null; } };
     const controller = new AbortController();
     const finish = () => {
       if (finished) return;
@@ -707,6 +710,14 @@ export function registerInterpretationStream(app: Express) {
       const apiKey = provider.apiKey;
       const model = provider.model;
       formatSse(res, "status", { text: `正在连接解读服务（${model}${isThinkingModel(model) ? " · 已关闭思考" : ""}）…` });
+      // 本地模型的预填充发生在返回 HTTP 头之前，fetch 会长时间阻塞在这里，心跳须先于请求启动
+      if (provider.mode === "local") {
+        const startedAt = Date.now();
+        heartbeat = setInterval(() => {
+          const seconds = Math.round((Date.now() - startedAt) / 1000);
+          formatSse(res, "status", { text: `模型仍在运算 · 已等待 ${seconds} 秒 · 本地推理通常需要 3-6 分钟，属正常现象，请勿关闭窗口` });
+        }, 20000);
+      }
       const upstream = await fetch(endpoint, {
         method: "POST",
         signal: controller.signal,
@@ -724,13 +735,22 @@ export function registerInterpretationStream(app: Express) {
       });
 
       if (!upstream.ok || !upstream.body) throw new Error(`upstream returned ${upstream.status}`);
-      formatSse(res, "status", { text: "已连通，等待模型开始输出…" });
+      stopHeartbeat();
+      formatSse(res, "status", { text: provider.mode === "local" ? "已连通。本地模型开始输出前需先预填充牌阵，通常还要等 2-4 分钟，期间没有文字属正常现象…" : "已连通，等待模型开始输出…" });
+      if (provider.mode === "local") {
+        const connectedAt = Date.now();
+        heartbeat = setInterval(() => {
+          const seconds = Math.round((Date.now() - connectedAt) / 1000);
+          formatSse(res, "status", { text: `模型仍在运算 · 已等待 ${seconds} 秒 · 本地推理通常需要 3-6 分钟，属正常现象，请勿关闭窗口` });
+        }, 20000);
+      }
 
       const contentType = upstream.headers.get("content-type") || "";
       if (!contentType.includes("text/event-stream")) {
         const payload = await upstream.json();
         const content = payload?.choices?.[0]?.message?.content;
         if (typeof content !== "string") throw new Error("upstream response did not include interpretation text");
+        stopHeartbeat();
         formatSse(res, "status", { text: "模型已返回完整解读，正在写入终端…" });
         for (const chunk of splitForFallback(content)) formatSse(res, "delta", { text: chunk });
       } else {
@@ -752,7 +772,7 @@ export function registerInterpretationStream(app: Express) {
               const event = JSON.parse(data);
               const text = event?.choices?.[0]?.delta?.content;
               if (typeof text === "string" && text.length > 0) {
-              if (!announced) { announced = true; formatSse(res, "status", { text: "模型正在生成，流式输出中…" }); }
+              if (!announced) { announced = true; stopHeartbeat(); formatSse(res, "status", { text: "模型正在生成，流式输出中…" }); }
               formatSse(res, "delta", { text });
             }
             } catch {
@@ -762,12 +782,14 @@ export function registerInterpretationStream(app: Express) {
         }
       }
     } catch (error) {
+      stopHeartbeat();
       if (!controller.signal.aborted) {
         formatSse(res, "status", { text: "模型调用未成功，改用本机规则解读…" });
         for (const chunk of splitForFallback(buildFallback(result))) formatSse(res, "delta", { text: chunk });
         formatSse(res, "notice", { text: "实时解读暂不可用，已展示基于本次牌面和卦象的本地娱乐解读。" });
       }
     } finally {
+      stopHeartbeat();
       if (!controller.signal.aborted) { formatSse(res, "status", { text: "完成" }); formatSse(res, "done", { seedFingerprint: result.seedFingerprint }); }
       finish();
     }
