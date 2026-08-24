@@ -603,6 +603,7 @@ export function registerInterpretationStream(app: Express) {
       const endpoint = toCompletionUrl(provider.baseUrl);
       const apiKey = provider.apiKey;
       const model = provider.model;
+      formatSse(res, "status", { text: `正在连接解读服务（${model}）…` });
       const upstream = await fetch(endpoint, {
         method: "POST",
         signal: controller.signal,
@@ -619,17 +620,20 @@ export function registerInterpretationStream(app: Express) {
       });
 
       if (!upstream.ok || !upstream.body) throw new Error(`upstream returned ${upstream.status}`);
+      formatSse(res, "status", { text: "已连通，等待模型开始输出…" });
 
       const contentType = upstream.headers.get("content-type") || "";
       if (!contentType.includes("text/event-stream")) {
         const payload = await upstream.json();
         const content = payload?.choices?.[0]?.message?.content;
         if (typeof content !== "string") throw new Error("upstream response did not include interpretation text");
+        formatSse(res, "status", { text: "模型已返回完整解读，正在写入终端…" });
         for (const chunk of splitForFallback(content)) formatSse(res, "delta", { text: chunk });
       } else {
         const reader = upstream.body.getReader();
         const decoder = new TextDecoder();
         let buffer = "";
+        let announced = false;
         while (!finished) {
           const { done, value } = await reader.read();
           if (done) break;
@@ -643,7 +647,10 @@ export function registerInterpretationStream(app: Express) {
             try {
               const event = JSON.parse(data);
               const text = event?.choices?.[0]?.delta?.content;
-              if (typeof text === "string" && text.length > 0) formatSse(res, "delta", { text });
+              if (typeof text === "string" && text.length > 0) {
+              if (!announced) { announced = true; formatSse(res, "status", { text: "模型正在生成，流式输出中…" }); }
+              formatSse(res, "delta", { text });
+            }
             } catch {
               // Ignore partial/non-content SSE payloads from the compatible upstream.
             }
@@ -652,11 +659,12 @@ export function registerInterpretationStream(app: Express) {
       }
     } catch (error) {
       if (!controller.signal.aborted) {
+        formatSse(res, "status", { text: "模型调用未成功，改用本机规则解读…" });
         for (const chunk of splitForFallback(buildFallback(result))) formatSse(res, "delta", { text: chunk });
         formatSse(res, "notice", { text: "实时解读暂不可用，已展示基于本次牌面和卦象的本地娱乐解读。" });
       }
     } finally {
-      if (!controller.signal.aborted) formatSse(res, "done", { seedFingerprint: result.seedFingerprint });
+      if (!controller.signal.aborted) { formatSse(res, "status", { text: "完成" }); formatSse(res, "done", { seedFingerprint: result.seedFingerprint }); }
       finish();
     }
   });
