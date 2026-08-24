@@ -1107,7 +1107,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "魏",
     "hp": 4,
     "skills": "奸雄、护驾",
-    "story": "魏武帝，以雄才与用人著称。",
+    "story": "魏武帝，乱世中挟天子以令诸侯，官渡烧信安人心，最善借势聚资源。生性多疑而屡遭暗算，却总能把危机翻成筹码——如奸雄，挨了打也要把打人的牌收归己用。",
     "symbolism": "承压、统御、把危机化为资源"
   },
   {
@@ -1118,7 +1118,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "魏",
     "hp": 3,
     "skills": "反馈、鬼才",
-    "story": "魏国重臣，善于隐忍与布局。",
+    "story": "魏国重臣，熬得住五丈原的漫长对峙，忍人所不能忍，待高平陵一变而毕其功于一役。反馈取来袭者一牌、鬼才改写判定于最后一刻，皆是忍而后发的功夫。",
     "symbolism": "审势、修正、后发制人"
   },
   {
@@ -1129,7 +1129,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "魏",
     "hp": 4,
     "skills": "刚烈",
-    "story": "曹魏名将，以忠勇刚直闻名。",
+    "story": "曹魏名将，战中被箭中目，拔矢啖睛，斗志不减反增。刚烈正是这口血气：伤我者必遭反噬，底线一步不让。",
     "symbolism": "反弹、意志、守住底线"
   },
   {
@@ -1140,7 +1140,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "魏",
     "hp": 4,
     "skills": "突袭",
-    "story": "合肥之战震慑东吴的魏将。",
+    "story": "合肥之战以八百骑冲孙权十万大军，威震逍遥津，江东小儿闻其名不敢夜啼。突袭如神兵天降，先手夺人粮草，专打一个措手不及。",
     "symbolism": "先机、奇袭、打破惯性"
   },
   {
@@ -1151,7 +1151,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "魏",
     "hp": 4,
     "skills": "裸衣",
-    "story": "曹操近卫，以勇力护主。",
+    "story": "曹操贴身近卫，潼关护主割须弃袍时以马鞍挡箭，赤膊斗马超，全凭一身真力。裸衣卸去包袱孤注一掷，护的就是这一下硬碰硬。",
     "symbolism": "卸下包袱、以真力破局"
   },
   {
@@ -1162,7 +1162,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "魏",
     "hp": 3,
     "skills": "天妒、遗计",
-    "story": "曹操谋士，以洞见和筹谋见长。",
+    "story": "曹操首席谋士，十胜十败论定官渡之心，算无遗策，却三十八岁早逝，临终仍留计定辽东。天妒予才而夺寿，遗计身后有安排——代价之中，另有后手。",
     "symbolism": "远见、留有后手、代价中的收获"
   },
   {
@@ -1173,7 +1173,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "魏",
     "hp": 3,
     "skills": "倾国、洛神",
-    "story": "魏文帝曹丕之妻，后世诗文常写其风姿。",
+    "story": "魏文帝曹丕之妻，姿容贤德并称，后世一篇《洛神赋》写尽其风姿。倾国以颜色为攻为守，洛神令流水不绝入怀——柔韧顺流，自有借力之道。",
     "symbolism": "柔韧、直觉、顺流而动"
   },
   {
@@ -1184,7 +1184,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "蜀",
     "hp": 4,
     "skills": "仁德、激将",
-    "story": "蜀汉开创者，以笼络人心和复兴汉室为志。",
+    "story": "蜀汉开创者，织席贩履起家，携民渡江而不弃人，终以得人心而成三分基业。仁德把手牌散出去、恩情传回来，激将一声令兄弟效死——力量都在联结人心上。",
     "symbolism": "仁心、凝聚、唤起他人力量"
   },
   {
@@ -1195,7 +1195,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "蜀",
     "hp": 4,
     "skills": "武圣",
-    "story": "蜀汉名将，忠义形象深入人心。",
+    "story": "蜀汉名将，生前水淹七军、威震华夏，身后受祀成神，义字贯平生。武圣之名非虚：一身原则立得稳，气势自能先屈人之兵。",
     "symbolism": "原则、担当、以义立身"
   },
   {
@@ -1206,7 +1206,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "蜀",
     "hp": 4,
     "skills": "咆哮",
-    "story": "蜀汉名将，以勇猛刚烈著称。",
+    "story": "蜀汉名将，当阳桥头一声吼，喝得曹军胆寒、水似倒流。咆哮正是这声吼：先声夺人，气势压阵，刀未出而局已开。",
     "symbolism": "宣泄、果断、用气势打开局面"
   },
   {
@@ -1217,7 +1217,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "蜀",
     "hp": 3,
     "skills": "观星、空城",
-    "story": "蜀汉丞相，以谋略、勤勉和忠诚闻名。",
+    "story": "蜀汉丞相，隆中一对预知三分天下，六出祁山鞠躬尽瘁。观星把未来的牌提前排好，空城大开城门以退敌——都是判势在先、以静制动的功夫。",
     "symbolism": "预判、留白、以静制动"
   },
   {
@@ -1228,7 +1228,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "蜀",
     "hp": 4,
     "skills": "龙胆",
-    "story": "蜀汉名将，长坂坡救主故事广为流传。",
+    "story": "蜀汉名将，长坂坡单骑闯入曹军重围，七进七出救回幼主。龙胆令杀闪互用：守亦可攻，进退自如，一身本事全在护人。",
     "symbolism": "守护、转换、防守亦可进攻"
   },
   {
@@ -1239,7 +1239,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "蜀",
     "hp": 4,
     "skills": "马术、铁骑",
-    "story": "西凉名将，以骁勇和骑战闻名。",
+    "story": "西凉铁骑之首，起兵反曹时令其割须弃袍，骑战之速冠绝一时。马术天然拉近距离，铁骑出击令敌难以闪避——快就是他的兵刃，直取目标。",
     "symbolism": "速度、突破、直取目标"
   },
   {
@@ -1250,7 +1250,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "蜀",
     "hp": 3,
     "skills": "集智、奇才",
-    "story": "传说中诸葛亮之妻，常被赋予巧思形象。",
+    "story": "相传为诸葛亮之妻，才学广博、机巧百出，民间把木牛流马一类巧物都附在她名下。集智借锦囊而摸牌，奇才不拘常格——是把知识化为路径的人。",
     "symbolism": "灵感、巧思、把知识化为路径"
   },
   {
@@ -1261,7 +1261,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "吴",
     "hp": 4,
     "skills": "制衡、救援",
-    "story": "东吴君主，善于在局势中取舍平衡。",
+    "story": "东吴君主，承父兄基业坐断东南，联刘抗曹、称帝立国，进退取舍皆有分寸。制衡弃牌摸牌、去留随心，救援借盟友续力——稳全局的功夫全在权衡。",
     "symbolism": "调度、权衡、稳住全局"
   },
   {
@@ -1272,7 +1272,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "吴",
     "hp": 4,
     "skills": "奇袭",
-    "story": "东吴名将，号称锦帆贼。",
+    "story": "东吴名将，少年时号锦帆贼，快意江湖，归吴后百骑劫魏营，来去如风。奇袭打的就是一场不宣而战：出人意表，借势破局。",
     "symbolism": "果敢、非常规路径、借势出击"
   },
   {
@@ -1283,7 +1283,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "吴",
     "hp": 4,
     "skills": "克己",
-    "story": "东吴名将，勤学而终成大器。",
+    "story": "东吴名将，起于草莽武夫，折节苦读令人刮目相看，终以白衣渡江袭取荆州。克己藏锋蓄力，不争朝夕——延迟满足者，终得大功。",
     "symbolism": "克制、积累、延迟满足"
   },
   {
@@ -1294,7 +1294,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "吴",
     "hp": 4,
     "skills": "苦肉",
-    "story": "赤壁之战中施苦肉计的东吴老将。",
+    "story": "东吴三朝老将，赤壁时自献苦肉计，诈降纵火，烧尽连环战船。苦肉以一点血换两张牌：肯认小损，方得大局。",
     "symbolism": "代价、示弱、以小损换大局"
   },
   {
@@ -1305,7 +1305,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "吴",
     "hp": 3,
     "skills": "英姿、反间",
-    "story": "东吴都督，赤壁之战的重要统帅。",
+    "story": "东吴大都督，谈笑间定孙刘之盟，赤壁纵火以弱胜强，雄姿英发。英姿多摸一牌天资自带，反间借一封伪书令敌自毁长城——打的都是信息与自信。",
     "symbolism": "自信、谋略、借信息影响选择"
   },
   {
@@ -1316,7 +1316,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "吴",
     "hp": 3,
     "skills": "国色、流离",
-    "story": "江东二乔之一，后世文学中的东吴佳人。",
+    "story": "江东二乔之一，孙策之妻，颜色倾城，后世诗文常与铜雀春深并举。国色以颜色控场，流离引刀锋转向他处——柔性调度，避其锋芒。",
     "symbolism": "转移、柔性调度、避开锋芒"
   },
   {
@@ -1327,7 +1327,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "吴",
     "hp": 3,
     "skills": "谦逊、连营",
-    "story": "东吴名将，以夷陵之战著称。",
+    "story": "东吴书生都督，夷陵之战忍至蜀军疲惫，一把火烧穿连营七百里。其名谦逊如其人：先守低姿态，耐心蓄力，而后一击穿局。",
     "symbolism": "谦守、连锁、耐心积累"
   },
   {
@@ -1338,7 +1338,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "吴",
     "hp": 3,
     "skills": "结姻、枭姬",
-    "story": "孙权之妹，三国故事中常与刘备联姻相连。",
+    "story": "孙权之妹，性刚烈、好武艺，演义中嫁刘备、归东吴，身世皆系两盟之间。结姻连两户、化干戈为玉帛，枭姬失而复得——借关系成事，也借关系补损。",
     "symbolism": "连结、修复、以关系获得资源"
   },
   {
@@ -1349,7 +1349,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "群",
     "hp": 3,
     "skills": "急救、青囊",
-    "story": "东汉末年名医，常被视为医术与仁心的象征。",
+    "story": "东汉末年神医，创五禽戏、悬壶济世，刮骨疗毒传为美谈，终为曹操疑心所害。急救回人于垂危，青囊愈伤于当下——皆及时补救、照料根本之象。",
     "symbolism": "疗愈、及时补救、照料根本"
   },
   {
@@ -1360,7 +1360,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "群",
     "hp": 4,
     "skills": "无双",
-    "story": "东汉末年武将，以勇武无双著称。",
+    "story": "东汉末年悍将，辕门射戟天下闻名，虎牢关前刘关张三英合战方才堪堪敌住。无双是单点的极致锋芒——成也独强，败也少援。",
     "symbolism": "锋芒、强势、单点突破"
   },
   {
@@ -1371,7 +1371,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "群",
     "hp": 3,
     "skills": "离间、闭月",
-    "story": "文学形象中与连环计相关的人物。",
+    "story": "连环计中的关键人物，周旋于董卓吕布之间，一舞而两雄生隙。离间令一牌生两心，闭月于回合转角回气——洞察人心者，善借力平衡。",
     "symbolism": "关系张力、洞察人心、借力平衡"
   },
   {
@@ -1382,7 +1382,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "群",
     "hp": 6,
     "skills": "耀武",
-    "story": "董卓部将，见于《三国演义》的汜水关故事。",
+    "story": "董卓麾下骁将，汜水关前连斩联军数将，声势骇人，演义中温酒未冷即败于关羽之手。耀武是高压威势，挨打反而给对手递筹码——威盛者须防身后刀。",
     "symbolism": "高压、威势、将对抗转为筹码"
   },
   {
@@ -1393,7 +1393,7 @@ export const standardDeck: OracleCard[] = [
     "faction": "群",
     "hp": 4,
     "skills": "妄尊、同疾",
-    "story": "东汉末年诸侯，称帝之举使其失去人心。",
+    "story": "东汉末年诸侯，兵强地广却贸然称帝，顿失人心、众叛亲离，呕血而终。妄尊肥己而削主，同疾引刀锋向己——得失皆在自我定位。",
     "symbolism": "欲望、失衡、审视自我定位"
   },
   {
