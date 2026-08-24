@@ -64,6 +64,7 @@ const systemPrompt = `你是“塔罗杀”的中文娱乐解读主持人。你�
 4. “六壬”部分必须命名为“六壬意象旁注”，并明确它是由本次数字、牌面与问事语境形成的娱乐性象征联想，不是传统完整大六壬排盘。
 5. 各体系要互相引用同一组牌和卦象，不能分别写成互不相关的段落。
 6. 必须解读 resonance 字段：同名牌重复出现说明其势被加倍强调；武将技能与阵中其他牌联动时（如咆哮配连杀、苦肉配桃），必须点破这层呼应。
+7. 综合结论必须给出明确的单一方向断语（如【宜进】【宜守】【缓进】【缓守】【宜断】），点名具体牌名与卦象为据；禁止写"进退皆可""见机行事"这类两面话。
 
 请使用以下 Markdown 结构，中文约 550–850 字：
 ### 塔罗 · 三牌叙事
@@ -526,6 +527,33 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
 
   const imagerySymbols = cards.map(({ card, orientation }) => cardImagery(card, orientation).split("——")[0]);
   const relationKind = String(plum.relation.kind ?? "");
+  // 明确断语：按牌象的攻守之势计数，叠加体用关系，得出单一方向的判断
+  const ATTACK_SYMBOLS = ["刃象", "拆象", "取象", "创象", "器象"];
+  const DEFENSE_SYMBOLS = ["避象", "守象", "甲象", "困象", "压象"];
+  let momentum = 0;
+  const evidenceNotes: string[] = [];
+  cards.forEach(({ card, orientation }) => {
+    const symbol = cardImagery(card, orientation).split("——")[0];
+    const weak = orientation === "reversed";
+    if (ATTACK_SYMBOLS.indexOf(symbol) >= 0) {
+      if (!weak) momentum += 1;
+      evidenceNotes.push(`「${card.name}」呈${symbol}${weak ? "（逆，攻势打折）" : "（正，攻势做实）"}`);
+    } else if (DEFENSE_SYMBOLS.indexOf(symbol) >= 0) {
+      if (!weak) momentum -= 1;
+      evidenceNotes.push(`「${card.name}」呈${symbol}${weak ? "（逆，守势松动）" : "（正，守势做实）"}`);
+    }
+  });
+  momentum += relationKind === "用生体" || relationKind === "体克用" ? 1 : relationKind === "用克体" || relationKind === "体生用" ? -1 : 0;
+  const verdict = momentum >= 2 ? "宜进" : momentum <= -2 ? "宜守" : momentum === 1 ? "缓进" : momentum === -1 ? "缓守" : "静观";
+  const VERDICT_SENTENCES: Record<string, string> = {
+    宜进: "攻势成势、外缘递力，这一局可以主动落子，往前推",
+    宜守: "守势压阵、外压未解，这一局动则耗损，先固根本",
+    缓进: "有可进之机但势未成满，小步推进，不急着摊牌",
+    缓守: "须先稳住自身，等外压松动，再图后手",
+    静观: "攻守相抵，局势未偏向任何一边，先看清再落子",
+  };
+  const verdictSentence = VERDICT_SENTENCES[verdict];
+  const evidenceSentence = evidenceNotes.length > 0 ? `牌面上${evidenceNotes.join("、")}，合计其势；` : "";
   const finalByRelation: Record<string, string> = {
     比和: `内外节奏一致，可依本心推进，把「${cards[2].card.name}」之势用在刀刃上`,
     用生体: `外力正在递力，顺势接住，再借「${cards[2].card.name}」加码`,
@@ -548,7 +576,9 @@ ${cardDescs.join("\n\n")}
 这不是传统完整大六壬排盘，而是以本次牌面与问事语境作的娱乐性象征联想。${TOPIC_OPENING[topic]}，三牌各呈其象：${imageryLines.join("；")}。${mirror}。
 
 ### 综合结论 · 可尝试的下一步
-${closingLine}。把上面的解读合拢来看：叙事上开局「${cards[0].card.name}」呈${imagerySymbols[0]}，行至「${cards[1].card.name}」呈${imagerySymbols[1]}，所幸手中还有「${cards[2].card.name}」呈${imagerySymbols[2]}；卦象判**${relationKind || "未明"}**；牌气上，${cardEcho.tone}${resonanceLine}。由此观之：${finalAdvice}。${nextStep}。${signature}。
+${closingLine}。把上面的解读合拢来看：叙事上开局「${cards[0].card.name}」呈${imagerySymbols[0]}，行至「${cards[1].card.name}」呈${imagerySymbols[1]}，手中还有「${cards[2].card.name}」呈${imagerySymbols[2]}；卦象判**${relationKind || "未明"}**；牌气上，${cardEcho.tone}${resonanceLine}。
+
+**断语：【${verdict}】**——${verdictSentence}。${evidenceSentence}由此观之：${finalAdvice}。${nextStep}。${signature}。
 
 > ${disclaimer}`;
 }
