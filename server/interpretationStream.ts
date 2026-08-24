@@ -35,6 +35,7 @@ function buildPrompt(result: ReturnType<typeof buildDivinationResult>) {
     faction: card.faction ?? null,
     health: card.hp ?? null,
     skills: card.skills ?? null,
+    skillMechanics: card.skills ? card.skills.split("、").map((skill) => SKILL_MECHANICS[skill]).filter((mech) => Boolean(mech)) : null,
     historicalContext: card.story ?? null,
     symbolicKeywords: card.symbolism,
   }));
@@ -65,6 +66,7 @@ const systemPrompt = `你是“塔罗杀”的中文娱乐解读主持人。你�
 5. 各体系要互相引用同一组牌和卦象，不能分别写成互不相关的段落。
 6. 必须解读 resonance 字段：同名牌重复出现说明其势被加倍强调；武将技能与阵中其他牌联动时（如咆哮配连杀、苦肉配桃），必须点破这层呼应。
 7. 综合结论必须给出明确的方向断语（如【宜进】【宜守】【缓进】【缓守】【宜断】），断语的方向要尊重牌意：点名具体牌名与卦象为据，牌面之势偏进就说进，偏守就说守，偏缓就说缓，让牌决定结论的走向。断语之后用大白话把结论讲清楚，让人一眼看懂该怎么做。
+8. 读牌的人多为三国杀玩家：解释每张牌时，先用一两句话带出它在牌局里的实战功能（依据 gameEffect 与 skillMechanics 字段），唤起玩家的对局记忆，再转入象征解读。
 
 请使用以下 Markdown 结构，中文约 550–850 字：
 ### 塔罗 · 三牌叙事
@@ -489,6 +491,70 @@ function nextStepFor(card: DrawnCard["card"]): string {
   return `围绕「${card.name}」给你的提示，落一件具体的小事`;
 }
 
+// 标准版武将技能机制速查：牌库只存技能名，这里补上一句话机制，供解读唤起玩家记忆
+const SKILL_MECHANICS: Record<string, string> = {
+  奸雄: "受到伤害时，可以把造成伤害的牌收入手牌",
+  护驾: "需要闪时，可以请求其他魏国武将代出",
+  反馈: "受到伤害后，可以获得伤害来源的一张牌",
+  鬼才: "可以用手牌替换任意角色的判定牌",
+  刚烈: "受到伤害后，可以判定，令伤害来源弃两张手牌或受到 1 点伤害",
+  突袭: "摸牌阶段可以改为获得至多两名其他角色的手牌",
+  裸衣: "摸牌阶段可以少摸一张牌，本回合杀和决斗的伤害 +1",
+  天妒: "判定牌生效后，可以获得该判定牌",
+  遗计: "受到 1 点伤害后，可以摸两张牌并交给任意角色",
+  洛神: "准备阶段可以连续判定，收下所有黑色判定牌",
+  倾国: "可以把黑色手牌当闪使用或打出",
+  仁德: "出牌阶段可以把任意张手牌交给其他角色，给出两张以上回复 1 点体力",
+  激将: "需要使用杀时，可以请求其他蜀国武将代出",
+  武圣: "可以把红色牌当杀使用或打出",
+  咆哮: "出牌阶段使用杀没有次数限制",
+  观星: "准备阶段可以观看牌堆顶若干张牌，并按任意顺序放回牌堆顶或底",
+  空城: "没有手牌时，不能成为杀或决斗的目标",
+  龙胆: "可以把杀当闪、闪当杀使用或打出",
+  铁骑: "使用杀指定目标后，可以判定，红色则目标的闪无效",
+  马术: "锁定技，你与其他角色的距离 -1",
+  集智: "使用普通锦囊牌时，可以摸一张牌",
+  奇才: "使用锦囊牌无距离限制",
+  烈弓: "出牌阶段使用杀，可以令不能响应或必中的目标无法闪避",
+  狂骨: "对距离 1 以内的角色造成 1 点伤害后，可以回复 1 点体力或摸一张牌",
+  制衡: "出牌阶段限一次，可以弃任意张牌并摸等量的牌",
+  救援: "其他吴国武将对自己使用桃时，额外回复 1 点体力",
+  奇袭: "可以把黑色牌当过河拆桥使用",
+  克己: "若出牌阶段未使用或打出过杀，弃牌阶段可以跳过",
+  苦肉: "出牌阶段可以失去 1 点体力，摸两张牌",
+  英姿: "摸牌阶段可以多摸一张牌",
+  反间: "出牌阶段可以令一名其他角色猜自己展示的一张手牌花色，猜错受到 1 点伤害",
+  国色: "可以把方块牌当乐不思蜀使用",
+  流离: "成为杀的目标时，可以弃一张牌，将目标转移给攻击范围内另一角色",
+  谦逊: "不能成为顺手牵羊和乐不思蜀的目标",
+  连营: "失去最后的手牌时，可以摸一张牌",
+  结姻: "出牌阶段可以弃置两张手牌，令自己和一名已受伤的男性角色各回复 1 点体力",
+  枭姬: "失去装备区里的牌时，可以摸两张牌",
+  急救: "濒死结算外，可以把红色牌当桃使用",
+  青囊: "出牌阶段可以弃一张手牌，令一名已受伤的角色回复 1 点体力",
+  无双: "使用杀时目标需两张闪才能抵消；使用决斗时对方每次需打出两张杀",
+  离间: "出牌阶段可以弃一张牌，令一名男性角色视为对另一名男性角色使用决斗",
+  闭月: "结束阶段可以摸一张牌",
+  耀武: "锁定技，当你受到红色杀造成的伤害时，伤害来源可以回复 1 点体力或摸一张牌",
+  妄尊: "主公的准备阶段，你可以摸一张牌，若如此做，本回合主公的手牌上限 -1",
+  同疾: "锁定技，若你的手牌数大于体力值，攻击范围内含你的角色使用杀时只能以你为目标",
+};
+
+// 向玩家说明这张牌在牌局里是干什么的，熟悉感即体验感
+function cardMechanic(card: DrawnCard["card"]): string {
+  if (card.kind === "game" && card.effect) return `牌局里，它${card.effect}`;
+  if (card.kind === "general" && card.skills) {
+    const notes: string[] = [];
+    card.skills.split("、").forEach((skill) => {
+      const mechanic = SKILL_MECHANICS[skill];
+      if (mechanic) notes.push(`「${skill}」——${mechanic}`);
+    });
+    if (notes.length > 0) return `牌局里，${card.name}${notes.join("；")}`;
+  }
+  if (card.kind === "health") return "牌局里，体力就是你的血量，归零即出局";
+  return "";
+}
+
 const SIGNATURES = [
   "牌面只描摹态势，落子的始终是你",
   "牌只是镜子，照出的路还得你自己走",
@@ -501,7 +567,8 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
   const cardDescs = cards.map(({ card, orientation }, index) => {
     const positionName = ["开局处境", "中途阻力", "手中资源"][index] ?? `第 ${index + 1} 位`;
     const stateText = orientation === "upright" ? "正位发力，顺势而为" : "逆位示警，需要先调整姿势";
-    return `${positionName}落在**${card.name}**（${orientation === "upright" ? "正位" : "逆位"}）：${cardReading(card, topic)}。${stateText}。`;
+    const mechanic = cardMechanic(card);
+    return `${positionName}落在**${card.name}**（${orientation === "upright" ? "正位" : "逆位"}）：${cardReading(card, topic)}。${mechanic ? `${mechanic}。` : ""}${stateText}。`;
   });
   const resonance = findResonance(cards);
   const resonanceNotes = [...resonance.duplicates, ...resonance.synergies];
