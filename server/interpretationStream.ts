@@ -725,6 +725,7 @@ export function registerInterpretationStream(app: Express) {
         body: JSON.stringify({
           model,
           stream: true,
+          stream_options: { include_usage: true },
           max_completion_tokens: 1800,
           messages: [
             { role: "system", content: systemPrompt },
@@ -750,14 +751,17 @@ export function registerInterpretationStream(app: Express) {
         const payload = await upstream.json();
         const content = payload?.choices?.[0]?.message?.content;
         if (typeof content !== "string") throw new Error("upstream response did not include interpretation text");
+        const usageData = payload?.usage;
         stopHeartbeat();
         formatSse(res, "status", { text: "模型已返回完整解读，正在写入终端…" });
         for (const chunk of splitForFallback(content)) formatSse(res, "delta", { text: chunk });
+        if (usageData) formatSse(res, "usage", { promptTokens: usageData.prompt_tokens ?? 0, completionTokens: usageData.completion_tokens ?? 0, totalTokens: usageData.total_tokens ?? 0 });
       } else {
         const reader = upstream.body.getReader();
         const decoder = new TextDecoder();
         let buffer = "";
         let announced = false;
+        let usageData: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number } | null = null;
         while (!finished) {
           const { done, value } = await reader.read();
           if (done) break;
@@ -770,6 +774,7 @@ export function registerInterpretationStream(app: Express) {
             if (!data || data === "[DONE]") continue;
             try {
               const event = JSON.parse(data);
+              if (event?.usage) usageData = event.usage;
               const text = event?.choices?.[0]?.delta?.content;
               if (typeof text === "string" && text.length > 0) {
               if (!announced) { announced = true; stopHeartbeat(); formatSse(res, "status", { text: "模型正在生成，流式输出中…" }); }
@@ -780,6 +785,7 @@ export function registerInterpretationStream(app: Express) {
             }
           }
         }
+        if (usageData) formatSse(res, "usage", { promptTokens: usageData.prompt_tokens ?? 0, completionTokens: usageData.completion_tokens ?? 0, totalTokens: usageData.total_tokens ?? 0 });
       }
     } catch (error) {
       stopHeartbeat();
