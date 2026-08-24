@@ -917,6 +917,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♣",
     "rank": "A",
     "effect": "攻击范围 1；出牌阶段使用【杀】次数不限。",
+    "story": "相传诸葛亮损益连弩，世称元戎，一弩十矢俱发，连珠不断。牌里出杀不设限，正是此器遗风：气势一开，不让节奏落地。",
     "symbolism": "连续行动、节奏加速、专注输出"
   },
   {
@@ -927,6 +928,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♦",
     "rank": "A",
     "effect": "攻击范围 1；出牌阶段使用【杀】次数不限。",
+    "story": "相传诸葛亮损益连弩，世称元戎，一弩十矢俱发，连珠不断。牌里出杀不设限，正是此器遗风：气势一开，不让节奏落地。",
     "symbolism": "连续行动、节奏加速、专注输出"
   },
   {
@@ -937,6 +939,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♠",
     "rank": "6",
     "effect": "攻击范围 2；使用【杀】无视目标防具。",
+    "story": "曹操至宝名剑曰青釭，锋利削铁如泥，后为赵云所得。演义中长坂一役，赵云持之冲突重围，刃不稍离身。削铁如泥，故能无视防具、直取核心。",
     "symbolism": "穿透表象、直取核心"
   },
   {
@@ -947,6 +950,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♠",
     "rank": "2",
     "effect": "攻击范围 2；造成伤害时可防止伤害并弃置目标两张牌。",
+    "story": "古之利器，其名取霜雪之寒，锋过处不务杀伤而落其资装。其用在克制：冷处理而止战损，收手即是收势。",
     "symbolism": "冷处理、止损、克制胜于伤害"
   },
   {
@@ -957,6 +961,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♠",
     "rank": "2",
     "effect": "攻击范围 2；对异性角色使用【杀】可令其弃牌或自己摸牌。",
+    "story": "刘备随身之兵，双剑并佩，一刚一柔。仁德之主不恃单锋，善在往来周旋间寻机——局面常在关系里打开，正如剑走雌雄两路。",
     "symbolism": "差异、互动、以关系撬动局面"
   },
   {
@@ -967,6 +972,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♠",
     "rank": "5",
     "effect": "攻击范围 3；【杀】被【闪】抵消后可再对同一目标使用【杀】。",
+    "story": "演义中关云长提八十二斤青龙偃月刀，温酒斩华雄、过五关斩六将。刀偃而复起，如其人追击不息：敌退即追，不令残局喘息。",
     "symbolism": "执着追击、不轻言收手"
   },
   {
@@ -977,6 +983,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♠",
     "rank": "Q",
     "effect": "攻击范围 3；可将两张手牌当【杀】使用或打出。",
+    "story": "张飞掌中丈八蛇矛，演义中长坂桥头一声吼，喝退百万兵。此矛贵在化零为整：两张手牌并作一击，恰似散兵聚成雷霆。",
     "symbolism": "化零为整、资源转化"
   },
   {
@@ -987,6 +994,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♦",
     "rank": "5",
     "effect": "攻击范围 3；【杀】被【闪】抵消后可弃两张牌令其仍造成伤害。",
+    "story": "演义中徐晃掌中大斧，重器也。重器用之必有代价——逼不得闪，便弃牌强攻。破局从来如此：舍得垫本，方能必中。",
     "symbolism": "破局、代价、强行推进"
   },
   {
@@ -997,6 +1005,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♦",
     "rank": "Q",
     "effect": "攻击范围 4；最后一张手牌是【杀】时可额外指定两个目标。",
+    "story": "演义中吕布持方天画戟，虎牢关前独战三路诸侯。孤身立于局末，反成最险锋芒——手牌将尽时一击加倍，正合戟主孤注之性。",
     "symbolism": "孤注一掷、扩大影响"
   },
   {
@@ -1007,6 +1016,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♥",
     "rank": "5",
     "effect": "攻击范围 5；造成伤害时可弃置目标一张坐骑牌。",
+    "story": "古之良弓，取意麒麟远行而矢先至。射人先射马：远锋既中，更削其坐骑、断其退路——先手之利，在于让人进退不得。",
     "symbolism": "远见、削弱退路、掌握距离"
   },
   {
@@ -1017,6 +1027,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♠",
     "rank": "2",
     "effect": "需要使用或打出【闪】时可判定，红色视为使用或打出【闪】。",
+    "story": "演义中诸葛亮垒石为八阵图，陆逊误入，几乎不得出。阵不硬挡，顺势借天时，令来攻者自空——险峰不迎，走为上。",
     "symbolism": "顺势、借天时、以机制避险"
   },
   {
@@ -1027,6 +1038,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♣",
     "rank": "2",
     "effect": "需要使用或打出【闪】时可判定，红色视为使用或打出【闪】。",
+    "story": "演义中诸葛亮垒石为八阵图，陆逊误入，几乎不得出。阵不硬挡，顺势借天时，令来攻者自空——险峰不迎，走为上。",
     "symbolism": "顺势、借天时、以机制避险"
   },
   {
@@ -1037,6 +1049,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♣",
     "rank": "2",
     "effect": "黑色【杀】对你无效。",
+    "story": "仁王为佛家语，喻护持正法之坚心。此盾取意于此：守正者不惧无端攻势，正面来犯，当面挡下，原则一步不退。",
     "symbolism": "原则、守正、抵挡无端攻势"
   },
   {
@@ -1047,6 +1060,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♣",
     "rank": "5",
     "effect": "其他角色计算与你的距离时始终 +1。",
+    "story": "相马者尝言的卢妨主，刘备不以为意。檀溪之急，此马一跃三丈，救主于灭顶之危。拉开距离、留足边界，紧要处自保一程。",
     "symbolism": "留出空间、提高边界"
   },
   {
@@ -1057,6 +1071,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♠",
     "rank": "5",
     "effect": "其他角色计算与你的距离时始终 +1。",
+    "story": "曹操宛城惨败，折了长子爱将，唯赖坐骑绝影突围疾行，连影子都追不上。抽身要快——乱局未沾身，先留退步。",
     "symbolism": "抽身、隐匿、避免卷入"
   },
   {
@@ -1067,6 +1082,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♥",
     "rank": "K",
     "effect": "其他角色计算与你的距离时始终 +1。",
+    "story": "曹操名驹，通体黄毛、四蹄如电，唯凯旋班师时骑乘以壮声势。不与乱军相争，稳健自守——距离，是留给从容者的。",
     "symbolism": "稳健、守护、拉开距离"
   },
   {
@@ -1077,6 +1093,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♥",
     "rank": "5",
     "effect": "你计算与其他角色的距离时始终 -1。",
+    "story": "人中有吕布，马中有赤兔。此马先随吕布，后归关羽；演义中关羽骑之斩颜良，万军之中取上将首级如探囊。主动逼近，先手即得手。",
     "symbolism": "主动接近、快速切入"
   },
   {
@@ -1087,6 +1104,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♠",
     "rank": "K",
     "effect": "你计算与其他角色的距离时始终 -1。",
+    "story": "大宛为汉代西域名马产地，汗血宝马即出此方。良驹日行千里，意在开拓前路——先机不等人，路是蹚出来的。",
     "symbolism": "开拓、缩短路径、争取先机"
   },
   {
@@ -1097,6 +1115,7 @@ export const standardDeck: OracleCard[] = [
     "suit": "♦",
     "rank": "K",
     "effect": "你计算与其他角色的距离时始终 -1。",
+    "story": "紫骍为骏马之名，色赤而骏，古来诗文多所咏叹。不求一时捷足，贵在耐久——长线逼近，靠的是不断。",
     "symbolism": "耐力、持续推进、长线靠近"
   },
   {
