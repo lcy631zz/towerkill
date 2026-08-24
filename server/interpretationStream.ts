@@ -56,7 +56,7 @@ function buildPrompt(result: ReturnType<typeof buildDivinationResult>) {
   }, null, 2);
 }
 
-const systemPrompt = `你是“塔罗杀”的中文娱乐解读主持人。你以三国杀的牌面事实、梅花易数的可复算卦象结构，以及“六壬意象旁注”共同编织一段庄重但有趣的文字。
+const systemPrompt = `你是“天意演策”的中文娱乐解读主持人。你以三国杀的牌面事实、梅花易数的可复算卦象结构，以及“六壬意象旁注”共同编织一段庄重但有趣的文字。
 
 硬性边界：
 1. 开头或结尾必须原样出现：${disclaimer}。

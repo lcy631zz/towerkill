@@ -15,7 +15,7 @@ pnpm desktop:package
 
 ### 当前提供的解压即用包
 
-本次交付中已从 electron-builder 成功完成的 `win-unpacked` 阶段整理出 `towerkill-windows-portable.zip`。解压后进入 `towerkill-windows-portable` 文件夹，直接运行根目录的 `塔罗杀.exe`；请保留同级的 `resources` 等全部文件。
+本次交付中已从 electron-builder 成功完成的 `win-unpacked` 阶段整理出 `towerkill-windows-portable.zip`。解压后进入 `towerkill-windows-portable` 文件夹，直接运行根目录的 `天意演策.exe`；请保留同级的 `resources` 等全部文件。
 
 由于在线构建环境缺少 Wine，后续 NSIS 安装器阶段未能完成，因此该压缩包是**完整的 Windows 便携运行目录**，不是单文件安装器。运行目录内含主 EXE 与 Electron 所需资源；已校验压缩包可完整解压且根目录包含 EXE 和使用说明，但尚未能在真实 Windows 设备完成启动实测。首次运行前请确认文件来源；若 Windows 显示 SmartScreen 提示，可在确认来源后选择“更多信息”→“仍要运行”。
 

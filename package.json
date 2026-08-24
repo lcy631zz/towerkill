@@ -17,7 +17,7 @@
   },
   "build": {
     "appId": "im.manus.taluosha",
-    "productName": "塔罗杀",
+    "productName": "天意演策",
     "asar": false,
     "directories": { "output": "release" },
     "files": ["dist/**/*", "desktop/**/*", "package.json"],

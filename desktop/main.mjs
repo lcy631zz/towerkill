@@ -63,13 +63,13 @@ async function createWindow() {
     env: { ...process.env, NODE_ENV: "production", PORT: String(port), ELECTRON_RUN_AS_NODE: "1" },
     stdio: "ignore",
   });
-  serverProcess.on("error", (error) => dialog.showErrorBox("塔罗杀启动失败", error.message));
+  serverProcess.on("error", (error) => dialog.showErrorBox("天意演策启动失败", error.message));
   try {
     await waitForServer();
-    const window = new BrowserWindow({ width: 720, height: 620, minWidth: 460, minHeight: 420, resizable: true, title: "塔罗杀", autoHideMenuBar: true, webPreferences: { contextIsolation: true, nodeIntegration: false, preload: path.join(app.getAppPath(), "desktop", "preload.cjs") } });
+    const window = new BrowserWindow({ width: 720, height: 620, minWidth: 460, minHeight: 420, resizable: true, title: "天意演策", autoHideMenuBar: true, webPreferences: { contextIsolation: true, nodeIntegration: false, preload: path.join(app.getAppPath(), "desktop", "preload.cjs") } });
     await window.loadURL(`http://127.0.0.1:${port}`);
   } catch (error) {
-    dialog.showErrorBox("塔罗杀启动失败", error instanceof Error ? error.message : "未知错误");
+    dialog.showErrorBox("天意演策启动失败", error instanceof Error ? error.message : "未知错误");
     app.quit();
   }
 }

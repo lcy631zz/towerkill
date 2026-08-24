@@ -34,6 +34,6 @@ export function OracleCard({ card, orientation, index, assetUrl, onRenderDiagnos
       {card.story && <p><b>典故：</b>{card.story}</p>}
       <p className="sgs-card__symbol">{card.symbolism}</p>
     </div>
-    <footer className="sgs-card__seal">塔罗杀 · 标准牌式</footer>
+    <footer className="sgs-card__seal">天意演策 · 标准牌式</footer>
   </article>;
 }
