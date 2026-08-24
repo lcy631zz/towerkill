@@ -35,7 +35,7 @@ async function restoreAssetPack() {
 }
 
 async function chooseAssetFolder() {
-  const selected = await dialog.showOpenDialog({ title: "选择三国杀卡图素材文件夹", properties: ["openDirectory"] });
+  const selected = await dialog.showOpenDialog({ title: "选择卡牌素材文件夹", properties: ["openDirectory"] });
   if (selected.canceled || !selected.filePaths[0]) return assetStatus();
   assetPack = await loadAssetPack(selected.filePaths[0]);
   await fs.writeFile(assetConfigPath(), JSON.stringify({ folderPath: assetPack.folderPath }, null, 2), "utf8");
