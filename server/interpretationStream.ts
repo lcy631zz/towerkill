@@ -565,6 +565,11 @@ function isLocalHost(baseUrl: string) {
   return host === "127.0.0.1" || host === "localhost" || host === "::1";
 }
 
+// qwen3 等思考模型默认先推理后作答，思考会挤占 token 预算、拖慢首字，解读类任务无需推理
+function isThinkingModel(model: string) {
+  return /qwen3/i.test(model);
+}
+
 export function registerInterpretationStream(app: Express) {
   app.post("/api/interpretation/stream", async (req: Request, res: Response) => {
     const parsed = interpretationRequest.safeParse(req.body);
@@ -603,7 +608,7 @@ export function registerInterpretationStream(app: Express) {
       const endpoint = toCompletionUrl(provider.baseUrl);
       const apiKey = provider.apiKey;
       const model = provider.model;
-      formatSse(res, "status", { text: `正在连接解读服务（${model}）…` });
+      formatSse(res, "status", { text: `正在连接解读服务（${model}${isThinkingModel(model) ? " · 已关闭思考" : ""}）…` });
       const upstream = await fetch(endpoint, {
         method: "POST",
         signal: controller.signal,
@@ -616,6 +621,7 @@ export function registerInterpretationStream(app: Express) {
             { role: "system", content: systemPrompt },
             { role: "user", content: buildPrompt(result) },
           ],
+          ...(isThinkingModel(model) ? { chat_template_kwargs: { enable_thinking: false } } : {}),
         }),
       });
 
