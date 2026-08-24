@@ -568,7 +568,8 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
     const positionName = ["开局处境", "中途阻力", "手中资源"][index] ?? `第 ${index + 1} 位`;
     const stateText = orientation === "upright" ? "正位发力，顺势而为" : "逆位示警，需要先调整姿势";
     const mechanic = cardMechanic(card);
-    return `${positionName}落在**${card.name}**（${orientation === "upright" ? "正位" : "逆位"}）：${cardReading(card, topic)}。${mechanic ? `${mechanic}。` : ""}${stateText}。`;
+    const storyLine = card.kind === "general" && card.story ? `论其生平，${card.story}` : "";
+    return `${positionName}落在**${card.name}**（${orientation === "upright" ? "正位" : "逆位"}）：${cardReading(card, topic)}。${storyLine}${mechanic ? `${mechanic}。` : ""}${stateText}。`;
   });
   const resonance = findResonance(cards);
   const resonanceNotes = [...resonance.duplicates, ...resonance.synergies];
