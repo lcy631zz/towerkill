@@ -64,7 +64,7 @@ const systemPrompt = `你是“塔罗杀”的中文娱乐解读主持人。你�
 4. “六壬”部分必须命名为“六壬意象旁注”，并明确它是由本次数字、牌面与问事语境形成的娱乐性象征联想，不是传统完整大六壬排盘。
 5. 各体系要互相引用同一组牌和卦象，不能分别写成互不相关的段落。
 6. 必须解读 resonance 字段：同名牌重复出现说明其势被加倍强调；武将技能与阵中其他牌联动时（如咆哮配连杀、苦肉配桃），必须点破这层呼应。
-7. 综合结论必须给出明确的单一方向断语（如【宜进】【宜守】【缓进】【缓守】【宜断】），点名具体牌名与卦象为据；禁止写"进退皆可""见机行事"这类两面话。
+7. 综合结论必须给出明确的单一方向断语（如【宜进】【宜守】【缓进】【缓守】【宜断】），点名具体牌名与卦象为据；禁止写"进退皆可""见机行事"这类两面话。断语之后必须用大白话把结论讲清楚，让人一眼看懂该怎么做，不堆砌文辞。
 
 请使用以下 Markdown 结构，中文约 550–850 字：
 ### 塔罗 · 三牌叙事
@@ -537,31 +537,31 @@ function buildFallback(result: ReturnType<typeof buildDivinationResult>) {
     const weak = orientation === "reversed";
     if (ATTACK_SYMBOLS.indexOf(symbol) >= 0) {
       if (!weak) momentum += 1;
-      evidenceNotes.push(`「${card.name}」呈${symbol}${weak ? "（逆，攻势打折）" : "（正，攻势做实）"}`);
+      evidenceNotes.push(`「${card.name}」是主攻的牌${weak ? "，但逆位了，劲头减半" : "，正位，这股劲是真的"}`);
     } else if (DEFENSE_SYMBOLS.indexOf(symbol) >= 0) {
       if (!weak) momentum -= 1;
-      evidenceNotes.push(`「${card.name}」呈${symbol}${weak ? "（逆，守势松动）" : "（正，守势做实）"}`);
+      evidenceNotes.push(`「${card.name}」是主守的牌${weak ? "，但逆位了，守不太住" : "，正位，得先顾好自己"}`);
     }
   });
   momentum += relationKind === "用生体" || relationKind === "体克用" ? 1 : relationKind === "用克体" || relationKind === "体生用" ? -1 : 0;
   const verdict = momentum >= 2 ? "宜进" : momentum <= -2 ? "宜守" : momentum === 1 ? "缓进" : momentum === -1 ? "缓守" : "静观";
   const VERDICT_SENTENCES: Record<string, string> = {
-    宜进: "攻势成势、外缘递力，这一局可以主动落子，往前推",
-    宜守: "守势压阵、外压未解，这一局动则耗损，先固根本",
-    缓进: "有可进之机但势未成满，小步推进，不急着摊牌",
-    缓守: "须先稳住自身，等外压松动，再图后手",
-    静观: "攻守相抵，局势未偏向任何一边，先看清再落子",
+    宜进: "牌的意思是：可以往前走了。时机在，外面也有助力，想做的事就去做",
+    宜守: "牌的意思是：先别动。现在动只会白费力气，把自己顾好最重要",
+    缓进: "牌的意思是：可以做，但别急。一小步一小步来，别一下子摊牌",
+    缓守: "牌的意思是：再等等。先把手头的事稳住，等压力小了再说下一步",
+    静观: "牌的意思是：先看清楚再说。局势还没明朗，别急着表态或做决定",
   };
   const verdictSentence = VERDICT_SENTENCES[verdict];
-  const evidenceSentence = evidenceNotes.length > 0 ? `牌面上${evidenceNotes.join("、")}，合计其势；` : "";
+  const evidenceSentence = evidenceNotes.length > 0 ? `原因摆在牌面上：${evidenceNotes.join("；")}。` : "";
   const finalByRelation: Record<string, string> = {
-    比和: `内外节奏一致，可依本心推进，把「${cards[2].card.name}」之势用在刀刃上`,
-    用生体: `外力正在递力，顺势接住，再借「${cards[2].card.name}」加码`,
-    体生用: `你在向外耗力，先用「${cards[2].card.name}」稳住自身，再谈付出`,
-    用克体: `外压实实在在，先守后动，「${cards[2].card.name}」是眼下最该倚仗的`,
-    体克用: `局面在你掌中，按部就班，以「${cards[2].card.name}」开路`,
+    比和: `你自己的状态和外面是对得上的，按本心去做，「${cards[2].card.name}」是你手里的牌，用好它`,
+    用生体: `外面正好有资源或机会递过来，别客气，接住它，「${cards[2].card.name}」能帮你更顺`,
+    体生用: `你现在一直在往外付出，有点透支，先用「${cards[2].card.name}」把自己顾好，再想别的`,
+    用克体: `外面的压力是真的，别硬碰，先稳住自己，有事就靠「${cards[2].card.name}」`,
+    体克用: `主动权在你手上，按你的节奏来，「${cards[2].card.name}」是最好的切入点`,
   };
-  const finalAdvice = finalByRelation[relationKind] ?? `体用之势未明，稳守本心，以「${cards[2].card.name}」为先手`;
+  const finalAdvice = finalByRelation[relationKind] ?? `局势还不明朗，先稳住自己，「${cards[2].card.name}」是你眼下最该用好的牌`;
   const resonanceLine = resonanceNotes.length > 0 ? `；更有牌阵呼应：${resonanceNotes.join("；")}` : "";
 
   return `### 塔罗 · 三牌叙事
@@ -578,7 +578,7 @@ ${cardDescs.join("\n\n")}
 ### 综合结论 · 可尝试的下一步
 ${closingLine}。把上面的解读合拢来看：叙事上开局「${cards[0].card.name}」呈${imagerySymbols[0]}，行至「${cards[1].card.name}」呈${imagerySymbols[1]}，手中还有「${cards[2].card.name}」呈${imagerySymbols[2]}；卦象判**${relationKind || "未明"}**；牌气上，${cardEcho.tone}${resonanceLine}。
 
-**断语：【${verdict}】**——${verdictSentence}。${evidenceSentence}由此观之：${finalAdvice}。${nextStep}。${signature}。
+**断语：【${verdict}】**——${verdictSentence}。${evidenceSentence}说白了：${finalAdvice}。${nextStep}。${signature}。
 
 > ${disclaimer}`;
 }
