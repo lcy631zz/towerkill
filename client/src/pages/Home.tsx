@@ -32,8 +32,8 @@ export default function Home() {
   const [notice, setNotice] = useState("");
   const [streamStatus, setStreamStatus] = useState("");
   const [error, setError] = useState("");
-  const [mode, setMode] = useState<ProviderMode>("rules");
-  const [provider, setProvider] = useState({ baseUrl: "https://api.openai.com/v1", model: "gpt-4.1-mini", apiKey: "" });
+  const [mode, setMode] = useState<ProviderMode>("custom");
+  const [provider, setProvider] = useState({ baseUrl: "https://api.deepseek.com", model: "deepseek-v4-flash", apiKey: "" });
   const [assets, setAssets] = useState<LocalAssetStatus>({ desktopAvailable: false, active: false, folderName: null, cardCount: 0, missingCount: 0, cards: {} });
   const resultRef = useRef<HTMLDivElement>(null);
   const ready = useMemo(() => question.trim().length >= 2 && [numbers.a, numbers.b, numbers.c].every((value) => Number.isInteger(Number(value)) && Number(value) >= 1 && Number(value) <= 999), [numbers, question]);
